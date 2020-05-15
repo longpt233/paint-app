@@ -5,6 +5,10 @@
  */
 package paint;
 
+import choose.*;
+import replay.*;
+
+
 import replay.ReplayDialog;
 import java.awt.Color;
 import java.awt.Dimension;
