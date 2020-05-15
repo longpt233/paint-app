@@ -1,5 +1,5 @@
 
-package paint;
+package replay;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -8,6 +8,7 @@ import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import paint.PaintState;
 
 /**
  *

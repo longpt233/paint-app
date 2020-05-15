@@ -5,6 +5,7 @@
  */
 package paint;
 
+import replay.ReplayDialog;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -81,9 +82,9 @@ public class MainFrame extends javax.swing.JFrame {
                   jPanel1 = new javax.swing.JPanel();
                   bUndo = new javax.swing.JButton();
                   bRedo = new javax.swing.JButton();
-                  paintTool = new paint.PaintTool();
-                  strokeState = new property.StrokeState();
-                  colorDialog1 = new property.ColorDialog();
+                  paintTool = new choose.PaintTool();
+                  strokeState = new choose.StrokeState();
+                  colorDialog1 = new choose.ColorDialog();
                   bLibrary = new javax.swing.JButton();
                   bReplay = new javax.swing.JButton();
                   jMenuBar1 = new javax.swing.JMenuBar();
@@ -474,7 +475,7 @@ public class MainFrame extends javax.swing.JFrame {
          private javax.swing.JButton bRedo;
          private javax.swing.JButton bReplay;
          private javax.swing.JButton bUndo;
-         private property.ColorDialog colorDialog1;
+         private choose.ColorDialog colorDialog1;
          private javax.swing.JMenuItem exitFile;
          private javax.swing.JMenu jMenu4;
          private javax.swing.JMenuBar jMenuBar1;
@@ -485,10 +486,10 @@ public class MainFrame extends javax.swing.JFrame {
          private javax.swing.JMenu miNew;
          private javax.swing.JMenuItem newFile;
          private javax.swing.JMenuItem openFile;
-         private paint.PaintTool paintTool;
+         private choose.PaintTool paintTool;
          private javax.swing.JMenuItem saveAsFile;
          private javax.swing.JMenuItem saveFile;
          private javax.swing.JScrollPane scrollPane;
-         private property.StrokeState strokeState;
+         private choose.StrokeState strokeState;
          // End of variables declaration//GEN-END:variables
 }

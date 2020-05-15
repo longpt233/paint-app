@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paint;
+package replay;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
+import paint.PaintState;
+import choose.PaintTool;
 import shape.Bucket;
 import shape.Line;
 import shape.Oval;
@@ -144,24 +146,24 @@ public class ReplayPanel extends JPanel implements Runnable {
           * Editor.
           */
          @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+         // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+         private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-    }// </editor-fold>//GEN-END:initComponents
+                  javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+                  this.setLayout(layout);
+                  layout.setHorizontalGroup(
+                           layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addGap(0, 400, Short.MAX_VALUE)
+                  );
+                  layout.setVerticalGroup(
+                           layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addGap(0, 300, Short.MAX_VALUE)
+                  );
+         }// </editor-fold>//GEN-END:initComponents
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    // End of variables declaration//GEN-END:variables
+         // Variables declaration - do not modify//GEN-BEGIN:variables
+         // End of variables declaration//GEN-END:variables
     public void setPaintState(PaintState paintState) {
                   this.paintState = paintState;
                   readState();

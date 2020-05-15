@@ -11,10 +11,7 @@ import java.awt.Point;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- *
- * @author hung
- */
+
 public class Shape implements Serializable {
 
     protected Color strokeColor;

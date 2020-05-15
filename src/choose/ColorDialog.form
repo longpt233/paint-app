@@ -65,7 +65,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bFillColorActionPerformed"/>
       </Events>
     </Component>
-    <Component class="property.ColorPane" name="colorPane">
+    <Component class="choose.ColorPane" name="colorPane">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="cc" red="cc" type="rgb"/>
