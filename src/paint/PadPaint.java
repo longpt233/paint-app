@@ -340,30 +340,7 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
             isSaved = false;
         }
     }
- 
-//    public void drawZoomImage(Graphics g) {
-//        if (zoom != 1) {
-//            return;
-//        }
-//        if (end.x - 40 < 0) {
-//            end.x = 40;
-//        } else if (end.x + 80 > buff_img.getWidth()) {
-//            end.x = buff_img.getWidth() - 80;
-//        }
-//
-//        if (end.y - 40 < 0) {
-//            end.y = 40;
-//        } else if (end.y + 80 > buff_img.getHeight()) {
-//            end.y = buff_img.getHeight() - 80;
-//        }
-//        BufferedImage subImage = buff_img.getSubimage(end.x - 40, (end.y - 40),
-//                80, 80);
-//        Graphics2D g2z = (Graphics2D) g;
-//        g2z.scale(3, 3);
-//        //Xac dinh vi tri ve anh
-//        g2z.drawImage(subImage, null, (int) (end.x / 3 - 40), (int) ((end.y - 120) / 3));
-//        repaint();
-//    }
+
     //Lay g2d ve thi se bi, nhung ma lay g2 ve thi se khong bi
 //<editor-fold defaultstate="collapsed" desc="paint">
 

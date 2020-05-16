@@ -8,6 +8,7 @@ package library;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -26,10 +27,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
-/**
- *
- * @author hung
- */
+ 
 public class ImagePane extends JPanel {
 
     private int rows = 3;
@@ -42,7 +40,7 @@ public class ImagePane extends JPanel {
     private Graphics2D g2d, g2;
     private String org_path = "src/Library/";
     private String[] library = new String[7];
-    private int specify = -1;
+    private int specify = -1; // loai lib 0-6
     private BufferedImage selectedImage;
     private Point location;
     private ArrayList<ImageCell> storedImage;
@@ -55,7 +53,7 @@ public class ImagePane extends JPanel {
         initComponents();
         
         this.setSize(new Dimension(cols * ImageCell.WIDTH, rows * ImageCell.HEIGHT));
-        System.out.println(getSize().width + " " + getSize().height);
+ //       System.out.println(getSize().width + " " + getSize().height);
         library[0] = "animals/";
         library[1] = "birthday cake/";
         library[2] = "Cars/";
@@ -73,7 +71,7 @@ public class ImagePane extends JPanel {
         });
         addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseMoved(MouseEvent e) {
-                if(specify==-1)
+                if(specify==-1)  // khi ma chua cho ra lib 
                     return;
                 location = e.getPoint();
                 repaint();
@@ -224,7 +222,8 @@ public class ImagePane extends JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
+        
+         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

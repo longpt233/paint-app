@@ -8,7 +8,6 @@ package paint;
 import choose.*;
 import replay.*;
 
-
 import replay.ReplayDialog;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -294,14 +293,8 @@ public class MainFrame extends javax.swing.JFrame {
                   filechooser.setFileFilter(bitmap);
                   FileNameExtensionFilter jpeg = new FileNameExtensionFilter("JPEG (*.jpg;*.jpeg;*.jpe;*jfif)", "jpg", "jpeg", "jpe", "jfif");
                   filechooser.setFileFilter(jpeg);
-//        FileNameExtensionFilter gif = new FileNameExtensionFilter("GIF (*.gif)", "gif");
-//        filechooser.setFileFilter(gif);
-//        FileNameExtensionFilter tiff = new FileNameExtensionFilter("TIFF (*.tif;*.tiff)", "tif", "tiff");
-//        filechooser.setFileFilter(tiff);
                   FileNameExtensionFilter png = new FileNameExtensionFilter("PNG (*.png)", "png");
                   filechooser.setFileFilter(png);
-//        FileNameExtensionFilter ico = new FileNameExtensionFilter("ICO (*.ico)", "ico");
-//        filechooser.setFileFilter(ico);
                   FileNameExtensionFilter allFile = new FileNameExtensionFilter("All Picture Files", "bmp", "dib", "jpg", "jpeg", "jpe", "jfif", "gif", "tif", "tiff", "png", "ico");
                   filechooser.setFileFilter(allFile);
 
@@ -372,7 +365,6 @@ public class MainFrame extends javax.swing.JFrame {
                   saveFile.setFileFilter(jpeg);
                   FileNameExtensionFilter gif = new FileNameExtensionFilter("GIF (*.gif)", "gif");
                   saveFile.setFileFilter(gif);
-
                   FileNameExtensionFilter png = new FileNameExtensionFilter("PNG (*.png)", "png");
                   saveFile.setFileFilter(png);
 
@@ -380,10 +372,12 @@ public class MainFrame extends javax.swing.JFrame {
                   saveFile.setSelectedFile(demo);
                   result = saveFile.showSaveDialog(null);
 
-                  if (result == JFileChooser.APPROVE_OPTION) {                              //nếu ấn Ok trong save file
-                           filler = saveFile.getFileFilter();                                  //lấy đường dẫn hiện tại của bộ lọc
-                           fileImage = saveFile.getCurrentDirectory();                         //lấy đường dẫn hiện tại
-                           fileName = fileImage.getPath() + "\\" + saveFile.getSelectedFile().getName();  //đường dẫn hiện tại + tên file
+                  if (result == JFileChooser.APPROVE_OPTION) {
+                           filler = saveFile.getFileFilter();
+                           fileImage = saveFile.getCurrentDirectory();
+
+                           // cai duogn dan nay hdh khac nhau la khac nhau   window "\\"
+                           fileName = fileImage.getPath() + "/" + saveFile.getSelectedFile().getName();
                            fileImage = new File(fileName);                                              //tạo file để lưu
 
                            String extension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
@@ -461,6 +455,11 @@ public class MainFrame extends javax.swing.JFrame {
          private void bLibraryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLibraryActionPerformed
                   // TODO add your handling code here:
                   Library library = new Library(this, true);
+                  buff_img = library.getBufferedImage();
+
+                  padPaint.loadImage(library.getBufferedImage());
+                  backgroundPanel.setPreferredSize(new Dimension(buff_img.getWidth() + 120, buff_img.getHeight() + 50));
+
          }//GEN-LAST:event_bLibraryActionPerformed
 
          /**

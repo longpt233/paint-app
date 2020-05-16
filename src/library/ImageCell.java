@@ -11,10 +11,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author hung
- */
+ 
 public class ImageCell extends ImageIcon {
 
     public static final int WIDTH = 100;
