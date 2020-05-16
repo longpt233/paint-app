@@ -92,6 +92,9 @@
       </Properties>
     </Component>
     <Container class="choose.ColorPane" name="colorPane">
+      <Events>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="colorPaneMousePressed"/>
+      </Events>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
         <Property name="useNullLayout" type="boolean" value="true"/>

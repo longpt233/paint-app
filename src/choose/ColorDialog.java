@@ -62,6 +62,12 @@ public class ColorDialog extends javax.swing.JPanel {
 
                   jLabel1.setText("  Stroke");
 
+                  colorPane.addMouseListener(new java.awt.event.MouseAdapter() {
+                           public void mousePressed(java.awt.event.MouseEvent evt) {
+                                    colorPaneMousePressed(evt);
+                           }
+                  });
+
                   javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
                   this.setLayout(layout);
                   layout.setHorizontalGroup(

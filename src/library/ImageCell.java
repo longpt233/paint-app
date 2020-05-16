@@ -25,19 +25,10 @@ public class ImageCell extends ImageIcon {
     @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
         if (image != null) {
-            g.drawImage(image, x+1, y+1,image.getWidth(null)-2,image.getHeight(null)-2, null);
+            g.drawImage(image, x+1, y+1,image.getWidth(null)-2,image.getHeight(null)-2, null);  // cacah ra mot ti de lay cai vien 
         }
 
     }
 
-    @Override
-    public int getIconWidth() {
-        return WIDTH;
-    }
-
-    @Override
-    public int getIconHeight() {
-        return HEIGHT;
-    }
 
 }

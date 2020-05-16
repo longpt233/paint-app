@@ -21,8 +21,6 @@ public class Library extends javax.swing.JDialog {
     public Library(JFrame parent,boolean modal) {
         super(parent,modal);
         initComponents();
-        buff_img = imagePane.getSelectedImage();
- 
         this.setVisible(modal);
         
     }
@@ -37,10 +35,10 @@ public class Library extends javax.swing.JDialog {
          private void initComponents() {
 
                   imagePane = new library.ImagePane();
-                  bPrevious = new javax.swing.JButton();
-                  bNext = new javax.swing.JButton();
                   bOk = new javax.swing.JButton();
                   bCancel = new javax.swing.JButton();
+                  jLabel1 = new javax.swing.JLabel();
+                  jLabel2 = new javax.swing.JLabel();
 
                   setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
                   addWindowListener(new java.awt.event.WindowAdapter() {
@@ -66,20 +64,6 @@ public class Library extends javax.swing.JDialog {
                            .addGap(0, 378, Short.MAX_VALUE)
                   );
 
-                  bPrevious.setText("<<Previous");
-                  bPrevious.addActionListener(new java.awt.event.ActionListener() {
-                           public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                    bPreviousActionPerformed(evt);
-                           }
-                  });
-
-                  bNext.setText("Next>>");
-                  bNext.addActionListener(new java.awt.event.ActionListener() {
-                           public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                    bNextActionPerformed(evt);
-                           }
-                  });
-
                   bOk.setText("Ok");
                   bOk.addActionListener(new java.awt.event.ActionListener() {
                            public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,23 +78,27 @@ public class Library extends javax.swing.JDialog {
                            }
                   });
 
+                  jLabel1.setText("You Choose:");
+
+                  jLabel2.setText("0");
+
                   javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                   getContentPane().setLayout(layout);
                   layout.setHorizontalGroup(
                            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                            .addGroup(layout.createSequentialGroup()
                                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                             .addComponent(imagePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                             .addGroup(layout.createSequentialGroup()
-                                                      .addComponent(bPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                      .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                      .addComponent(bNext)
-                                                      .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                      .addComponent(bOk)
-                                                      .addGap(18, 18, 18)
-                                                      .addComponent(bCancel)
-                                                      .addGap(46, 46, 46))))
+                                    .addComponent(imagePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGap(40, 40, 40)
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(bOk)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(bCancel)
+                                    .addGap(82, 82, 82))
                   );
                   layout.setVerticalGroup(
                            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,26 +106,16 @@ public class Library extends javax.swing.JDialog {
                                     .addContainerGap()
                                     .addComponent(imagePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                      .addComponent(bPrevious)
-                                                      .addComponent(bNext))
-                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                      .addComponent(bOk)
-                                                      .addComponent(bCancel)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                             .addComponent(bOk)
+                                             .addComponent(bCancel)
+                                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addContainerGap(17, Short.MAX_VALUE))
                   );
 
                   pack();
          }// </editor-fold>//GEN-END:initComponents
-
-    private void bPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPreviousActionPerformed
-       imagePane.previous();
-    }//GEN-LAST:event_bPreviousActionPerformed
-
-    private void bNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNextActionPerformed
-       imagePane.next();
-    }//GEN-LAST:event_bNextActionPerformed
 
     private void bCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelActionPerformed
         buff_img = null;
@@ -145,8 +123,10 @@ public class Library extends javax.swing.JDialog {
     }//GEN-LAST:event_bCancelActionPerformed
 
     private void imagePaneMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imagePaneMousePressed
-     //   buff_img = imagePane.getSelectedImage();
-//        label.setIcon(new ImageIcon(buff_img.getScaledInstance(283, 293, Image.SCALE_SMOOTH)));
+     
+            // set luong anh  khi nhan 
+             buff_img = imagePane.getSelectedImage();
+             jLabel2.setText(imagePane.getChosse());
         
     }//GEN-LAST:event_imagePaneMousePressed
 
@@ -166,12 +146,14 @@ public class Library extends javax.swing.JDialog {
 
          // Variables declaration - do not modify//GEN-BEGIN:variables
          private javax.swing.JButton bCancel;
-         private javax.swing.JButton bNext;
          private javax.swing.JButton bOk;
-         private javax.swing.JButton bPrevious;
          private library.ImagePane imagePane;
+         private javax.swing.JLabel jLabel1;
+         private javax.swing.JLabel jLabel2;
          // End of variables declaration//GEN-END:variables
     public BufferedImage getBufferedImage(){
         return buff_img;
     }
+      
+    
 }

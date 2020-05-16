@@ -457,7 +457,7 @@ public class MainFrame extends javax.swing.JFrame {
                   Library library = new Library(this, true);
                   buff_img = library.getBufferedImage();
 
-                  padPaint.loadImage(library.getBufferedImage());
+                  padPaint.loadImage(buff_img);
                   backgroundPanel.setPreferredSize(new Dimension(buff_img.getWidth() + 120, buff_img.getHeight() + 50));
 
          }//GEN-LAST:event_bLibraryActionPerformed

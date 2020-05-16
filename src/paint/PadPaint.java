@@ -133,10 +133,6 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
         this.addMouseMotionListener(this);
 
     }
-
- 
-
-
     public void initState() {
         Pencil pencil = new Pencil();
         pencil.addDraggedPoint(new Point(-1, -1));
