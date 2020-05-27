@@ -10,17 +10,14 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-/**
- *
- * @author hung
- */
+
 public class Pencil extends Shape implements DrawType {
 
     @Override
     public void draw(Graphics2D g2d) {
         BasicStroke stroke = null;
         if(miterLimit>=1.0f)
-             stroke = new BasicStroke(strokeThickness,endStrokeCap,lineStrokeJoin,miterLimit,
+        stroke = new BasicStroke(strokeThickness,endStrokeCap,lineStrokeJoin,miterLimit,
         dashArray,dashPhase);
         if (stroke != null) {
             g2d.setStroke(stroke);

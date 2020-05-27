@@ -11,10 +11,6 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
 
-/**
- *
- * @author hung
- */
 public class Oval extends Shape implements DrawType {
 
     private Color fillColor;

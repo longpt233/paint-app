@@ -33,10 +33,8 @@ public class ReplayPanel extends JPanel implements Runnable {
          private Line line;
          private Rectangle rect;
          private Oval oval;
-
          private Pencil pencil;
          private Bucket bucket;
-
          private Eraser eraser;
          private int delay = 30;
          private boolean isPlaying;
@@ -51,9 +49,7 @@ public class ReplayPanel extends JPanel implements Runnable {
          private ArrayList<DrawType> listState;
          private ArrayList<Integer> listDrawStep;
          private Graphics2D g2d, g2;
-         private Point curvePoint1;
-         private Point curvePoint2;
-         private Point curvePoint3;
+
 
          public void setDelay(int delay) {
                   this.delay = (105 - delay) / 2;
@@ -74,14 +70,10 @@ public class ReplayPanel extends JPanel implements Runnable {
                   rect = new Rectangle();
                   oval = new Oval();
                   pencil = new Pencil();
-
                   bucket = new Bucket();
-
                   eraser = new Eraser();
                   isPlaying = false;
-                  curvePoint1 = new Point();
-                  curvePoint2 = new Point();
-                  curvePoint3 = new Point();
+                 
                   initComponents();
                   paintState = new PaintState();
                   this.setSize(909, 439);
@@ -239,6 +231,10 @@ public class ReplayPanel extends JPanel implements Runnable {
                                     } else if (drawType instanceof Rectangle) {
                                              rect.setPoint(listPoint.get(0), listPoint.get(cStateElement));
                                              rect.draw(g2);
+                                                      System.out.println("currentState: " + currentState);
+                                                      System.out.println("currentStep: " + currentStep);
+                                                      System.out.println("currentStateElement: " + cStateElement);
+                                                      System.out.println("\n");
                                              if (cStateElement == listPoint.size() - 1) {
                                                       rect.draw(g2dBuffer);
                                              }
@@ -255,7 +251,7 @@ public class ReplayPanel extends JPanel implements Runnable {
                                                       System.out.println("currentState: " + currentState);
                                                       System.out.println("currentStep: " + currentStep);
                                                       System.out.println("currentStateElement: " + cStateElement);
-                                                      System.out.println("\n\n\n");
+                                                      System.out.println("\n");
                                                       pencil.setPoint(listPoint.get(cStateElement), listPoint.get(cStateElement + 1));
                                                       pencil.draw(g2dBuffer);
                                              }

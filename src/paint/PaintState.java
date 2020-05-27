@@ -10,17 +10,14 @@ import java.awt.image.WritableRaster;
 import java.io.Serializable;
 import java.util.ArrayList;
 import shape.DrawType;
-
-/**
- *
- * @author hung
- */
+ 
 public class PaintState implements Serializable{
-    public static final int ROTATE_RIGHT=1,ROTATE_LEFT = 2,ROTATE_REVERSE = 3,V_FLIP = 4,H_FLIP = 5,PAINTTING = 6;
-    private ArrayList<Integer> drawStepList;
+    public static final int PAINTTING = 6;
+    private ArrayList<Integer> drawStepList;// step la trang thai Painting moi lan no thay doi cong cu hay gi 
+    // do thi mang nay dc add them motj trong thai painting
     private ArrayList<DrawType> listShape;
     private DrawType drawType;
-    private int[] data = null;  //Lấy dữ liệu ảnh gốc
+    private int[] data = null; 
     private int w,h;
     public PaintState(){
         listShape = new ArrayList<>();

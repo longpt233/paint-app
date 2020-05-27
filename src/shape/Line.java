@@ -8,14 +8,8 @@ package shape;
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 
-/**
- *
- * @author hung
- */
 public class Line extends Shape implements DrawType {
-    
-
-    @Override
+         @Override
     public void draw(Graphics2D g2d) {
          BasicStroke stroke = new BasicStroke(strokeThickness,endStrokeCap,lineStrokeJoin,miterLimit,
         dashArray,dashPhase);

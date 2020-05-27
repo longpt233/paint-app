@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package shape;
 
 import java.awt.BasicStroke;
@@ -49,7 +45,7 @@ public class Shape implements Serializable {
     protected float miterLimit = 1.0f;
     protected float[] dashArray;
     
-    //Lay thong tin cua mot stroke
+     
     public void setStroke(BasicStroke stroke){
         strokeThickness = stroke.getLineWidth();
         endStrokeCap = stroke.getEndCap();

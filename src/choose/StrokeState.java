@@ -126,7 +126,6 @@ public class StrokeState extends javax.swing.JPanel {
                 BasicStroke.JOIN_BEVEL, 1.0f, dash, 2f);
         this.stroke = basicStroke;
         
-//        System.out.println("setStroke() ok");
     }
 
     public void setDash(float[] dash) {

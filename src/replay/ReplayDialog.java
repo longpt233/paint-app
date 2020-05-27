@@ -6,14 +6,18 @@ import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import paint.PaintState;
 
-/**
- *
- * @author Khanh
- */
 public class ReplayDialog extends javax.swing.JDialog {
 
     /**
@@ -74,6 +78,7 @@ public class ReplayDialog extends javax.swing.JDialog {
                   scrollPane = new javax.swing.JScrollPane();
                   speed = new javax.swing.JSlider();
                   bPlay = new javax.swing.JToggleButton();
+                  jButton1 = new javax.swing.JButton();
                   jMenuBar1 = new javax.swing.JMenuBar();
 
                   setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -96,6 +101,13 @@ public class ReplayDialog extends javax.swing.JDialog {
                                     bPlayActionPerformed(evt);
                            }
                   });
+
+                  jButton1.setText("Save");
+                  jButton1.addActionListener(new java.awt.event.ActionListener() {
+                           public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                    jButton1ActionPerformed(evt);
+                           }
+                  });
                   setJMenuBar(jMenuBar1);
 
                   javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -106,7 +118,9 @@ public class ReplayDialog extends javax.swing.JDialog {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                              .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
                                              .addGroup(layout.createSequentialGroup()
-                                                      .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                      .addGap(77, 77, 77)
+                                                      .addComponent(jButton1)
+                                                      .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                       .addComponent(bPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                       .addGap(273, 273, 273)
                                                       .addComponent(speed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -118,10 +132,17 @@ public class ReplayDialog extends javax.swing.JDialog {
                                     .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
                                     .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                             .addComponent(speed, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                             .addComponent(bPlay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addContainerGap())
+                                             .addGroup(layout.createSequentialGroup()
+                                                      .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                               .addComponent(speed, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                               .addComponent(bPlay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                      .addContainerGap())
+                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                      .addComponent(jButton1)
+                                                      .addGap(23, 23, 23))))
                   );
+
+                  jButton1.getAccessibleContext().setAccessibleName("Save");
 
                   pack();
          }// </editor-fold>//GEN-END:initComponents
@@ -147,15 +168,48 @@ public class ReplayDialog extends javax.swing.JDialog {
 
     }//GEN-LAST:event_formWindowClosing
 
+         private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+                  // TODO add your handling code here:
+                  saveFile();
+         }//GEN-LAST:event_jButton1ActionPerformed
+
 
          // Variables declaration - do not modify//GEN-BEGIN:variables
          private javax.swing.JToggleButton bPlay;
          private javax.swing.ButtonGroup buttonGroup1;
+         private javax.swing.JButton jButton1;
          private javax.swing.JMenuBar jMenuBar1;
          private javax.swing.JScrollPane scrollPane;
          private javax.swing.JSlider speed;
          // End of variables declaration//GEN-END:variables
     public void changeSpeed(int value) {
         replayPanel.setDelay(value);
+    }
+     public void saveFile() {
+        JFileChooser fileSave = new JFileChooser("Save a replay file");
+        int select = 0;
+        File init = new File("Untitled.rep");
+        fileSave.setSelectedFile(init);
+        select = fileSave.showSaveDialog(null);     //Hien thi filechoser cung voi ten mac dinh
+        if (select == JFileChooser.APPROVE_OPTION) {
+            File file = fileSave.getCurrentDirectory();
+            String fileName = file.getPath() + "\\" + fileSave.getSelectedFile().getName();
+            file = new File(fileName);
+            if (file.exists()) {
+                int r = JOptionPane.showConfirmDialog(this, "File" + fileSave.getSelectedFile() + " already exists\nDo you want to replace it", "Warning", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (r == JOptionPane.NO_OPTION) {
+                    return;
+                }
+            }
+            try {
+                ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName));
+                oos.writeObject(paintState);
+                saveToFile = true;
+                oos.close();
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Save file error!", "Error", JOptionPane.ERROR_MESSAGE);
+                Logger.getLogger(ReplayDialog.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
