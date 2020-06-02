@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package choose;
+package properties;
 
-import choose.ColorCell;
+import properties.ColorCell;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;

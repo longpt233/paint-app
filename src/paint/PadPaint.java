@@ -1,5 +1,8 @@
 package paint;
 
+import properties.ColorDialog;
+import properties.StrokeState;
+import properties.PaintTool;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,7 +19,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-import choose.*;
 import shape.*;
 
 public class PadPaint extends javax.swing.JPanel implements MouseListener, MouseMotionListener {
@@ -67,21 +69,21 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
 
                   start = new Point(-1, -1);
                   end = new Point(-1, -1);
-                  this.setSize(new Dimension(width, height));
-                  //Khoi tao khung anh trang 
+                  //Khoi tao khung anh trang goc
                   org_img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
                   g2d = (Graphics2D) org_img.getGraphics();
                   g2d.setColor(new Color(255, 255, 255));
                   g2d.fillRect(0, 0, width, height);
                   g2d.dispose();
-                  
+                  // khoi tao luong anh viet len 
                   buff_img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-                  
-
+                 // khoi taO DATA cho PaintState
                   paintState.setData(org_img);
+                  // set trang thai dau tien la dung chuot
                   initState();
                   this.addMouseListener(this);
                   this.addMouseMotionListener(this);
+                   this.setSize(new Dimension(width, height));
 
          }
 
@@ -98,7 +100,6 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                   //Trong qua trinh ve anh goc can co cac tham so de chi ra duoc anh goc bi quay tai mot buoc ve nao do
                   g2d.drawImage(org_img, 0, 0, this);
                   repaint();
-
          }
 
          public void undo() {
@@ -114,9 +115,10 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                            buff_img = new BufferedImage(org_img.getWidth(), org_img.getHeight(), BufferedImage.TYPE_INT_RGB);
                            g2d = (Graphics2D) buff_img.getGraphics();
                            refresh();
-                           //Xoa trang thai cuoi
+                           //Xoa + lay ra+ cat vao redo  trang thai cuoi
                            DrawType drawType = paintState.removeEndShape();
                            redoState.addDrawState(drawType);
+                           
                            //Ve lai toan bo trang thai cua anh tu luc dau den luc 
                            int shapeIndex = 0;
                            for (int i = 0; i < paintState.getDrawStepList().size(); i++) {
@@ -141,8 +143,7 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                                                                         inPencil.draw(g2d);
                                                                }
 
-                                                      } //update by Khanh
-                                                      else if (inDrawType instanceof Bucket) {
+                                                      }else if (inDrawType instanceof Bucket) {
                                                                Bucket inBucket = (Bucket) inDrawType;
                                                                inBucket.draw(buff_img);
                                                       }
@@ -213,7 +214,6 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                   org_img.flush();
                   buff_img.flush();
                   System.gc();
-                  org_img = null;
                   buff_img = null;
                   org_img = new BufferedImage(getSize().width, getSize().height, BufferedImage.TYPE_INT_RGB);
                   g2 = (Graphics2D) org_img.getGraphics();
@@ -241,7 +241,7 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                            g2 = (Graphics2D) buff_img.getGraphics();
                            g2.drawImage(img, 0, 0, img.getWidth(null), img.getHeight(null), this);
                            g2.dispose();
-                           paintState.setData(org_img);
+                          paintState.setData(org_img);
                            g2d = (Graphics2D) buff_img.getGraphics();
 
                            this.setSize(new Dimension(org_img.getWidth(), org_img.getHeight()));
@@ -255,9 +255,7 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
          public void saveImage(File f, String extension) {
                   try {
                            ImageIO.write(buff_img, extension, f);
-//                           isSaved = true;
                   } catch (IOException ex) {
-                           //  isSaved = false;
                            System.out.println("paint.PadPaint.saveImage() can not save");
                   }
          }
@@ -338,11 +336,8 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                   if (!redoState.isEmpty()) {
                            redoState.removeAll();
                   }
-                  System.out.println("paint.PadPaint.mousePressed()" + e.toString());
                   start = e.getPoint();    // start gio la toa do 2 cchieu chu k phai la e 
                   // e gom nhieu thong tin khac nhu nut bam,....
-                  System.out.println("paint.PadPaint.mousePressed()" + start.toString());
-                  System.out.println("paint.PadPaint.mousePressed()" + start.toString());
                   switch (paintTool.getDrawMode()) {
                            case LINE:
                                     line = new Line();
@@ -402,7 +397,7 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                   // nha chuot ra la ve 
                   switch (paintTool.getDrawMode()) {
                            case LINE:
-                                    System.out.println("paint.PadPaint.mouseReleased()");
+                           //         System.out.println("paint.PadPaint.mouseReleased()");
                                     paintState.addDrawState(line);
                                     line.draw(g2d);
                                     break;
@@ -416,13 +411,9 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                                     break;
                            case ERASER:
                                     paintState.addDrawState(eraser);
-                                    eraser.draw(g2d);
-                                    locationEraser.move((int) (e.getPoint().x), (int) (e.getPoint().y));
                                     break;
                            case PENCIL:
-                                    pencil.setPoint(pencil.getDraggedPoint().get(0), pencil.getDraggedPoint().get(0));
                                     paintState.addDrawState(pencil);
-                                    pencil.draw(g2d);
                                     break;
 
                   }//</editor-fold>
@@ -438,7 +429,7 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                   end = e.getPoint();
                   switch (paintTool.getDrawMode()) {
                            case LINE:
-                                    System.out.println("paint.PadPaint.mouseDragged()" + end.toString());
+                   //                 System.out.println("paint.PadPaint.mouseDragged()" + end.toString());
                                     line.setPoint(start, end);
                                     line.addDraggedPoint(end);
                                     break;
@@ -456,7 +447,7 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                                     eraser.addDraggedPoint(end);
                                     start = end;
                                     eraser.draw(g2d);
-                                    locationEraser.move((int) (e.getPoint().x), (int) (e.getPoint().y));
+                                   locationEraser.move((int) (e.getPoint().x), (int) (e.getPoint().y));
                                     break;
                            case PENCIL:
                                     pencil.setPoint(start, end);

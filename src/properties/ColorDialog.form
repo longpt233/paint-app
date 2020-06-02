@@ -91,7 +91,7 @@
         <Property name="text" type="java.lang.String" value="  Stroke"/>
       </Properties>
     </Component>
-    <Container class="choose.ColorPane" name="colorPane">
+    <Container class="properties.ColorPane" name="colorPane">
       <Events>
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="colorPaneMousePressed"/>
       </Events>

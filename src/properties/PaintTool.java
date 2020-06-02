@@ -1,4 +1,4 @@
- package choose;
+ package properties;
 
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -9,9 +9,11 @@ import java.awt.event.ActionListener;
 public class PaintTool extends javax.swing.JPanel implements ActionListener {
 
          @Override
-         public void actionPerformed(ActionEvent e) {
+         public void actionPerformed(ActionEvent arg0) {
                   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
          }
+
+        
 
          public static enum DrawMode {
                   LINE, RECT, OVAL, PENCIL, ERASER, CURVE,BUCKET,SEL

@@ -3,8 +3,6 @@ package replay;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,9 +18,6 @@ import paint.PaintState;
 
 public class ReplayDialog extends javax.swing.JDialog {
 
-    /**
-     * Creates new form ReplayDialog
-     */
     private PaintState paintState;
     private ImageIcon playIcon;
     private ImageIcon pauseIcon;
@@ -30,7 +25,6 @@ public class ReplayDialog extends javax.swing.JDialog {
     private ReplayPanel replayPanel;
     private JPanel containerPanel;
     private BufferedImage buff_img;
-    private boolean saveToFile = false;
 
     public ReplayDialog(java.awt.Frame parent, boolean modal, PaintState paintState) {
         super(parent, modal);
@@ -41,7 +35,6 @@ public class ReplayDialog extends javax.swing.JDialog {
         this.paintState = paintState;
         initComponents();
          bPlay.setIcon(pauseIcon);
-//        bStop.setIcon(stopIcon);
         containerPanel = new JPanel();
         containerPanel.setLayout(null);
         replayPanel = new ReplayPanel();
@@ -53,13 +46,8 @@ public class ReplayDialog extends javax.swing.JDialog {
         containerPanel.add(replayPanel);
         containerPanel.validate();
         replayPanel.setButton(bPlay);
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-
-            }
-
-        });
+       
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("Untitled-Replay Dialog");
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -204,7 +192,6 @@ public class ReplayDialog extends javax.swing.JDialog {
             try {
                 ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName));
                 oos.writeObject(paintState);
-                saveToFile = true;
                 oos.close();
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Save file error!", "Error", JOptionPane.ERROR_MESSAGE);

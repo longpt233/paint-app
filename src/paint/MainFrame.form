@@ -214,14 +214,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bRedoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="choose.PaintTool" name="paintTool">
+        <Component class="properties.PaintTool" name="paintTool">
           <Events>
             <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="paintToolPropertyChange"/>
           </Events>
         </Component>
-        <Component class="choose.StrokeState" name="strokeState">
+        <Component class="properties.StrokeState" name="strokeState">
         </Component>
-        <Component class="choose.ColorDialog" name="colorDialog1">
+        <Component class="properties.ColorDialog" name="colorDialog1">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f7" green="f7" red="e9" type="rgb"/>

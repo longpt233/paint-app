@@ -17,7 +17,7 @@ public class PaintState implements Serializable{
     // do thi mang nay dc add them motj trong thai painting
     private ArrayList<DrawType> listShape;
     private DrawType drawType;
-    private int[] data = null; 
+    private int[] data = null;  
     private int w,h;
     public PaintState(){
         listShape = new ArrayList<>();
@@ -55,6 +55,8 @@ public class PaintState implements Serializable{
         System.gc();
     }
     
+    
+    // set va get data cho luong replay 
     public void setData(BufferedImage buff_img){
         w = buff_img.getWidth();
         h = buff_img.getHeight();

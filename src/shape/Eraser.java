@@ -8,10 +8,7 @@ package shape;
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 
-/**
- *
- * @author hung
- */
+// easer thuc chat la pencil de luu lai trang thai xoa
 public class Eraser extends Shape implements DrawType {
 
     private float sizeEraser;
@@ -30,7 +27,7 @@ public class Eraser extends Shape implements DrawType {
     
     public float getSizeEraser() {
         return sizeEraser;
-    }
+}
 
     public void setSizeEraser(float sizeEraser) {
         this.sizeEraser = sizeEraser;

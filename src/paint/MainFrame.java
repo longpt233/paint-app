@@ -1,14 +1,9 @@
 package paint;
 
-import choose.*;
-import replay.*;
 
-import replay.ReplayDialog;
+
 import java.awt.Color;
-import java.awt.Dialog;
 import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +15,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+
 import library.Library;
+import replay.ReplayDialog;
 
 public class MainFrame extends javax.swing.JFrame {
 
@@ -28,16 +26,16 @@ public class MainFrame extends javax.swing.JFrame {
          private String fileName = "";
          private File fileImage = null;
          private PadPaint padPaint = null;
-         private JPanel backgroundPanel = new JPanel();
+        private JPanel backgroundPanel = new JPanel();
 
          public MainFrame() {
                   initComponents();
 
                   padPaint = new PadPaint(909, 439);
                   backgroundPanel.setLayout(null);
-                  backgroundPanel.setBackground(new Color(204, 204, 255));
+                 backgroundPanel.setBackground(new Color(204, 204, 255));
                   buff_img = padPaint.getBuffer();
-                  backgroundPanel.setPreferredSize(new Dimension(buff_img.getWidth() + 120, buff_img.getHeight() + 50));
+               backgroundPanel.setPreferredSize(new Dimension(buff_img.getWidth() + 120, buff_img.getHeight() + 50));
                   backgroundPanel.add(padPaint);
                   scrollPane.setViewportView(backgroundPanel);
                   padPaint.setColorChooser(colorDialog1);
@@ -58,9 +56,9 @@ public class MainFrame extends javax.swing.JFrame {
                   jPanel1 = new javax.swing.JPanel();
                   bUndo = new javax.swing.JButton();
                   bRedo = new javax.swing.JButton();
-                  paintTool = new choose.PaintTool();
-                  strokeState = new choose.StrokeState();
-                  colorDialog1 = new choose.ColorDialog();
+                  paintTool = new properties.PaintTool();
+                  strokeState = new properties.StrokeState();
+                  colorDialog1 = new properties.ColorDialog();
                   bLibrary = new javax.swing.JButton();
                   bReplay = new javax.swing.JButton();
                   jMenuBar1 = new javax.swing.JMenuBar();
@@ -391,7 +389,7 @@ public class MainFrame extends javax.swing.JFrame {
          private javax.swing.JButton bRedo;
          private javax.swing.JButton bReplay;
          private javax.swing.JButton bUndo;
-         private choose.ColorDialog colorDialog1;
+         private properties.ColorDialog colorDialog1;
          private javax.swing.JMenuItem exitFile;
          private javax.swing.JMenu jMenu4;
          private javax.swing.JMenuBar jMenuBar1;
@@ -402,9 +400,9 @@ public class MainFrame extends javax.swing.JFrame {
          private javax.swing.JMenu miNew;
          private javax.swing.JMenuItem newFile;
          private javax.swing.JMenuItem openFile;
-         private choose.PaintTool paintTool;
+         private properties.PaintTool paintTool;
          private javax.swing.JMenuItem saveFile;
          private javax.swing.JScrollPane scrollPane;
-         private choose.StrokeState strokeState;
+         private properties.StrokeState strokeState;
          // End of variables declaration//GEN-END:variables
 }

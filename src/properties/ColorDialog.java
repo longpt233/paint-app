@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package choose;
+package properties;
 
-import choose.*;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -46,7 +45,7 @@ public class ColorDialog extends javax.swing.JPanel {
                   jLabel2 = new javax.swing.JLabel();
                   bStrokeColor = new javax.swing.JToggleButton();
                   jLabel1 = new javax.swing.JLabel();
-                  colorPane = new choose.ColorPane();
+                  colorPane = new properties.ColorPane();
 
                   buttonGroup1.add(bFillColor);
                   bFillColor.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +123,7 @@ public class ColorDialog extends javax.swing.JPanel {
          private javax.swing.JToggleButton bStrokeColor;
          private javax.swing.ButtonGroup buttonGroup1;
          private javax.swing.ButtonGroup buttonGroup2;
-         private choose.ColorPane colorPane;
+         private properties.ColorPane colorPane;
          private javax.swing.JLabel jLabel1;
          private javax.swing.JLabel jLabel2;
          // End of variables declaration//GEN-END:variables
