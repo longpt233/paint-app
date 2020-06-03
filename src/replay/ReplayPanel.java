@@ -278,8 +278,13 @@ public class ReplayPanel extends JPanel implements Runnable {
                                                                listPoint = pencil.getDraggedPoint();
 
                                                       } else if (inDrawType instanceof Bucket) {
-                                                               Bucket inBucket = (Bucket) inDrawType;
-                                                               inBucket.draw(buff_img);
+                                                                 bucket = (Bucket) inDrawType;                                              
+                                                                bucket.getStart();
+                                                                bucket.getArrPoint();
+                                                                bucket.draw(buff_img);
+                                                                listPoint = null;
+                                                                currentState++;
+                                                                currentStep++;
                                                       }
                                              } else {   //Neu diem da duoc khoi tao
                                                       //Kiem tra xem hinh hien tai da dat den trang thai cuoi cung cua hinh chua
