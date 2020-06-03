@@ -235,13 +235,16 @@ public class ReplayPanel extends JPanel implements Runnable {
                                                       pencil.setPoint(listPoint.get(cStateElement), listPoint.get(cStateElement + 1));
                                                       pencil.draw(g2dBuffer);
                                              }
-                                    } else if (drawType instanceof Eraser) {
+                                    }  else if (drawType instanceof Eraser) {
                                              if (cStateElement < listPoint.size() - 1) {
                                                       eraser.setPoint(listPoint.get(cStateElement), listPoint.get(cStateElement + 1));
                                                       eraser.draw(g2dBuffer);
                                              }
-                                    }
-                                    //   g2dBuffer.dispose();
+                                    } else if (drawType instanceof Bucket ) {
+                                            bucket.setStart(listPoint.get(cStateElement+4));                                               
+                                            bucket.draw(g2dBuffer);
+                                            
+                                    }                                    //   g2dBuffer.dispose();
                            }
                   }
          }
@@ -277,15 +280,20 @@ public class ReplayPanel extends JPanel implements Runnable {
                                                                pencil = (Pencil) inDrawType;
                                                                listPoint = pencil.getDraggedPoint();
 
-                                                      } else if (inDrawType instanceof Bucket) {
-                                                                 bucket = (Bucket) inDrawType;                                              
+                                                      } else if (inDrawType instanceof Eraser){
+                                                                eraser= (Eraser) inDrawType;
+                                                                listPoint=eraser.getDraggedPoint();
+                                                          
+                                                      } else if(inDrawType instanceof Bucket) {
+                                                                bucket = (Bucket) inDrawType;                                              
                                                                 bucket.getStart();
                                                                 bucket.getArrPoint();
                                                                 bucket.draw(buff_img);
                                                                 listPoint = null;
                                                                 currentState++;
                                                                 currentStep++;
-                                                      }
+                                               
+                                             }
                                              } else {   //Neu diem da duoc khoi tao
                                                       //Kiem tra xem hinh hien tai da dat den trang thai cuoi cung cua hinh chua
 
