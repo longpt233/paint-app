@@ -40,7 +40,7 @@ public class ReplayDialog extends javax.swing.JDialog {
         replayPanel = new ReplayPanel();
         replayPanel.setPaintState(paintState);
         buff_img = replayPanel.getBuffer();
-        containerPanel.setPreferredSize(new Dimension(replayPanel.getWidth() + 100, replayPanel.getHeight() + 50));
+        containerPanel.setPreferredSize(new Dimension(replayPanel.getWidth() -50 , replayPanel.getHeight() ));
         containerPanel.add(replayPanel);
         scrollPane.setViewportView(containerPanel);
         containerPanel.add(replayPanel);
