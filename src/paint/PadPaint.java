@@ -89,7 +89,8 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
 
          public void initState() {
                   paintState.addDrawState(pencil);
-                  paintState.addDrawStep(PaintState.PAINTTING);
+//                  paintState.addDrawStep(PaintState.PAINTTING);
+ paintState.addDrawStep( );
          }
 
          public BufferedImage getBuffer() {
@@ -107,28 +108,31 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                            return;
                   }
                   //Lay ra trang thai cuoi de tro lai trang thai truoc do
-                  int stepState = paintState.removeEndStep();
-                  redoState.addDrawStep(stepState);
-                  if (stepState == 6) {
+//                  int stepState = paintState.removeEndStep();
+                  paintState.removeEndStep();
+                  redoState.addDrawStep();
+         //         if (stepState == 6) {
 
                            //khoi tao mot buffer moi de ve len panel
                            buff_img = new BufferedImage(org_img.getWidth(), org_img.getHeight(), BufferedImage.TYPE_INT_RGB);
                            g2d = (Graphics2D) buff_img.getGraphics();
                            refresh();
                            //Xoa + lay ra+ cat vao redo  trang thai cuoi
-                           DrawType drawType = paintState.removeEndShape();
-                           redoState.addDrawState(drawType);
+                           DrawType tempDrawType = paintState.removeEndShape();
+                           redoState.addDrawState(tempDrawType);
                            
                            //Ve lai toan bo trang thai cua anh tu luc dau den luc 
-                           int shapeIndex = 0;
-                           for (int i = 0; i < paintState.getDrawStepList().size(); i++) {
-                                    int inStepState = paintState.getDrawStepList().get(i);
-                                    //Lay tung trang thia cua buoc ve
-                                    switch (inStepState) {
-
-                                             case PaintState.PAINTTING:
+                          // int shapeIndex = 0;
+ //                          for (int i = 0; i < paintState.getDrawStepList().size(); i++) {
+                         for (int i = 0; i < paintState.getStepCount(); i++) {
+//
+//                                    int inStepState = paintState.getDrawStepList().get(i);
+//                                    //Lay tung trang thia cua buoc ve
+//                                    switch (inStepState) {
+//
+//                                             case PaintState.PAINTTING:
                                                       //Neu la painting thi se ve lai toan bo anh tu dau
-                                                      DrawType inDrawType = paintState.getListState().get(shapeIndex);
+                                                      DrawType inDrawType = paintState.getListState().get(i);
                                                       if (inDrawType instanceof Line) {
                                                                Line inLine = (Line) inDrawType;
                                                                inLine.draw(g2d);
@@ -147,33 +151,35 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                                                                Bucket inBucket = (Bucket) inDrawType;
                                                                inBucket.draw(buff_img);
                                                       }
-                                                      shapeIndex++;
-                                                      break;
-                                    }
-                           }
-                  }
+//                                                      shapeIndex++;
+                                                    //  break;
+                                    //}
+                          }
+            //      }
                   repaint();
          }
 
          public void redo() {
                   System.out.println("paint.PadPaint.redo()");
                   if (!redoState.isEmpty()) {
-                           int stepState = redoState.removeEndStep();
-                           paintState.addDrawStep(stepState);
-                           DrawType drawType0 = redoState.removeEndShape();
-                           paintState.addDrawState(drawType0);
+   //                        int stepState = redoState.removeEndStep();
+//                           paintState.addDrawStep(stepState);
+                           paintState.addDrawStep( );
+                           DrawType tempDrawType = redoState.removeEndShape();
+                           paintState.addDrawState(tempDrawType);
                            buff_img = new BufferedImage(org_img.getWidth(), org_img.getHeight(), BufferedImage.TYPE_INT_RGB);
                            g2d = (Graphics2D) buff_img.getGraphics();
                            refresh();
                            //Ve lai trang thai truoc do
-                           int shapeIndex = 0;
-                           for (int i = 0; i < paintState.getDrawStepList().size(); i++) {
-                                    int inStepState = paintState.getDrawStepList().get(i);
-                                    //Lay tung trang thia cua buoc ve
-                                    switch (inStepState) {
+                 //          int shapeIndex = 0;
+//                           for (int i = 0; i < paintState.getDrawStepList().size(); i++) {
+                           for (int i = 0; i < paintState.getStepCount(); i++) {
+//                                    int inStepState = paintState.getDrawStepList().get(i);
+//                                    //Lay tung trang thia cua buoc ve
+//                                    switch (inStepState) {
 
-                                             case PaintState.PAINTTING:
-                                                      DrawType inDrawType = paintState.getListState().get(shapeIndex);
+                                     //        case PaintState.PAINTTING:
+                                                      DrawType inDrawType = paintState.getListState().get(i);
                                                       if (inDrawType instanceof Line) {
                                                                Line inLine = (Line) inDrawType;
                                                                inLine.draw(g2d);
@@ -197,11 +203,11 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                                                                Bucket inBucket = (Bucket) inDrawType;
                                                                inBucket.draw(buff_img);
                                                       }
-                                                      shapeIndex++;
+//                                                      shapeIndex++;
                                     }
 
                                     repaint();
-                           }
+                     //      }
                   }
          }
 
@@ -417,7 +423,8 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                                     break;
 
                   }//</editor-fold>
-                  paintState.addDrawStep(PaintState.PAINTTING);
+//                  paintState.addDrawStep(PaintState.PAINTTING);
+            paintState.addDrawStep( );
                   start = null;
                   end = null;
                   repaint();

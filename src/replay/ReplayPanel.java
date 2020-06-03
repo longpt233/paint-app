@@ -37,7 +37,7 @@ public class ReplayPanel extends JPanel implements Runnable {
          private int cStateElement = 0;
          private ArrayList<Point> listPoint;
          private ArrayList<DrawType> listState;
-         private ArrayList<Integer> listDrawStep;
+     //    private ArrayList<Integer> listDrawStep;
          private Graphics2D g2d, g2;
 
          public void setDelay(int delay) {
@@ -50,7 +50,7 @@ public class ReplayPanel extends JPanel implements Runnable {
 
          public ReplayPanel() {
                   listState = new ArrayList<>();
-                  listDrawStep = new ArrayList<>();
+         //         listDrawStep = new ArrayList<>();
                   line = new Line();
                   rect = new Rectangle();
                   oval = new Oval();
@@ -142,7 +142,7 @@ public class ReplayPanel extends JPanel implements Runnable {
          public void readState() {
                   listPoint = new ArrayList<>();
                   listState = paintState.getListState();
-                  listDrawStep = paintState.getDrawStepList();
+        //          listDrawStep = paintState.getDrawStepList();
                   org_img.flush();
                   buff_img.flush();
                   System.gc();
@@ -249,15 +249,16 @@ public class ReplayPanel extends JPanel implements Runnable {
          @Override
          public void run() {
 
-                  while (currentStep < paintState.getDrawStepList().size()) {
+//                  while (currentStep < paintState.getDrawStepList().size()) {
+                            while (currentStep < paintState.getStepCount()) {
                            if (isPlaying == false) {
                                     thread.suspend();
                            }
 
-                           int inStepState = listDrawStep.get(currentStep);
-                           //Lay tung trang thia cua buoc ve
-                           switch (inStepState) {
-                                    case PaintState.PAINTTING:
+//                           int inStepState = listDrawStep.get(currentStep);
+//                           //Lay tung trang thia cua buoc ve
+//                           switch (inStepState) {
+//                                    case PaintState.PAINTTING:
                                              if (listPoint == null) {
                                                       DrawType inDrawType = listState.get(currentState);
                                                       if (inDrawType instanceof Line) {
@@ -294,12 +295,12 @@ public class ReplayPanel extends JPanel implements Runnable {
 
                                                       }
                                              }
-                                             break;
-                           }
+                                       //      break;
+                        //   }
 
-                           if (inStepState != PaintState.PAINTTING) {
-                                    currentStep++;
-                           }
+//                           if (inStepState != PaintState.PAINTTING) {
+//                                    currentStep++;
+//                           }
                            try {
                                     Thread.sleep(delay);
                            } catch (InterruptedException ex) {

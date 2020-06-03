@@ -47,7 +47,7 @@ public class ReplayDialog extends javax.swing.JDialog {
         containerPanel.validate();
         replayPanel.setButton(bPlay);
        
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("Untitled-Replay Dialog");
         this.setLocationRelativeTo(null);
         this.setVisible(true);

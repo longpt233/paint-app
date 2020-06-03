@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ 
 package paint;
 
 import java.awt.image.BufferedImage;
@@ -12,8 +8,8 @@ import java.util.ArrayList;
 import shape.DrawType;
  
 public class PaintState implements Serializable{
-    public static final int PAINTTING = 6;
-    private ArrayList<Integer> drawStepList;// step la trang thai Painting moi lan no thay doi cong cu hay gi 
+   
+    private int StepCount=0;
     // do thi mang nay dc add them motj trong thai painting
     private ArrayList<DrawType> listShape;
     private DrawType drawType;
@@ -21,14 +17,15 @@ public class PaintState implements Serializable{
     private int w,h;
     public PaintState(){
         listShape = new ArrayList<>();
-        drawStepList = new ArrayList<>();
+        StepCount=0;
         listShape.add(drawType);
     }
-    public void addDrawStep(int drawStep){
-        drawStepList.add(drawStep);
+    public void addDrawStep(){
+        StepCount++;
     }
-    public ArrayList<Integer> getDrawStepList(){
-        return drawStepList;
+
+    public int getStepCount(){
+             return  StepCount;
     }
     public void addDrawState(DrawType drawType){
         listShape.add(drawType);
@@ -36,22 +33,24 @@ public class PaintState implements Serializable{
     public ArrayList<DrawType> getListState(){
         return listShape;
     }
+ 
     public DrawType removeEndShape(){
         if(listShape.isEmpty())
             return null;
         return listShape.remove(listShape.size()-1);
     }
     public int removeEndStep(){
-        if(drawStepList.isEmpty())
-            return -1;
-        return drawStepList.remove(drawStepList.size()-1);
+         if(StepCount==0) return -1;
+         StepCount--;
+         return 0;
     }
     public boolean isEmpty(){
-        return drawStepList.isEmpty();
+//        return drawStepList.isEmpty();
+         return StepCount==0;
     }
     public void removeAll(){
         listShape = new ArrayList<>();
-        drawStepList = new ArrayList<>();
+                 StepCount=0;
         System.gc();
     }
     
