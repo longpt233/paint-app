@@ -283,8 +283,7 @@ public class ReplayPanel extends JPanel implements Runnable {
                                                                 bucket = (Bucket) inDrawType;                                              
                                                                 bucket.getStart();
                                                                 bucket.getArrPoint();
-                                                                bucket.draw(buff_img);
-                                                                listPoint = null;
+                                                                if (bucket.checkFilled())bucket.draw(buff_img); ;
                                                                 currentState++;
                                                                 currentStep++;
                                                
