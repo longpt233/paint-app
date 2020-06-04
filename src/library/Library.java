@@ -10,9 +10,7 @@ import javax.swing.JFrame;
 
 public class Library extends javax.swing.JDialog {
 
-         /**
-          * Creates new form Library
-          */
+
          private BufferedImage buff_img;
 
          public Library(JFrame parent, boolean modal) {

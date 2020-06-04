@@ -45,7 +45,6 @@ public class PaintState implements Serializable{
          return 0;
     }
     public boolean isEmpty(){
-//        return drawStepList.isEmpty();
          return StepCount==0;
     }
     public void removeAll(){

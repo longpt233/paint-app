@@ -61,7 +61,7 @@ public class PaintTool extends javax.swing.JPanel implements ActionListener {
                   bOval = new javax.swing.JToggleButton();
                   bEraser = new javax.swing.JToggleButton();
 
-                  setBackground(new java.awt.Color(233, 247, 247));
+                  setBackground(new java.awt.Color(153, 153, 153));
 
                   bPencil.setBackground(new java.awt.Color(255, 255, 255));
                   buttonGroup1.add(bPencil);
@@ -128,18 +128,16 @@ public class PaintTool extends javax.swing.JPanel implements ActionListener {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                              .addComponent(bEraser, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                              .addComponent(bPencil, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                              .addGroup(layout.createSequentialGroup()
-                                                      .addGap(5, 5, 5)
                                                       .addComponent(bBucket, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                       .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                       .addComponent(bLine, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                              .addGroup(layout.createSequentialGroup()
-                                                      .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                       .addComponent(bRect, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                       .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                      .addComponent(bOval, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addContainerGap())
+                                                      .addComponent(bOval, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                   );
                   layout.setVerticalGroup(
                            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

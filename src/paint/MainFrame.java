@@ -33,14 +33,14 @@ public class MainFrame extends javax.swing.JFrame {
 
                   padPaint = new PadPaint(909, 439);
                   backgroundPanel.setLayout(null);
-                 backgroundPanel.setBackground(new Color(204, 204, 255));
+                 backgroundPanel.setBackground(new Color(153,153,153));
                   buff_img = padPaint.getBuffer();
                backgroundPanel.setPreferredSize(new Dimension(buff_img.getWidth() + 120, buff_img.getHeight() + 50));
                   backgroundPanel.add(padPaint);
                   scrollPane.setViewportView(backgroundPanel);
-                  padPaint.setColorChooser(colorDialog1);
-                  padPaint.setPaintTool(paintTool);
-                  padPaint.setStrokeState(strokeState);
+                  padPaint.setColorChooser(colorDialog);
+                  padPaint.setPaintTool(paintTool1);
+                  padPaint.setStrokeState(strokeState1);
                   padPaint.flush();
                   this.setLocationRelativeTo(null);
                   this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -56,11 +56,11 @@ public class MainFrame extends javax.swing.JFrame {
                   jPanel1 = new javax.swing.JPanel();
                   bUndo = new javax.swing.JButton();
                   bRedo = new javax.swing.JButton();
-                  paintTool = new properties.PaintTool();
-                  strokeState = new properties.StrokeState();
-                  colorDialog1 = new properties.ColorDialog();
+                  paintTool1 = new properties.PaintTool();
+                  colorDialog = new properties.ColorDialog();
                   bLibrary = new javax.swing.JButton();
                   bReplay = new javax.swing.JButton();
+                  strokeState1 = new properties.StrokeState();
                   jMenuBar1 = new javax.swing.JMenuBar();
                   miNew = new javax.swing.JMenu();
                   newFile = new javax.swing.JMenuItem();
@@ -75,7 +75,7 @@ public class MainFrame extends javax.swing.JFrame {
                   setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
                   setBackground(new java.awt.Color(233, 247, 247));
 
-                  jPanel1.setBackground(new java.awt.Color(233, 247, 247));
+                  jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
                   bUndo.setText("undo");
                   bUndo.addActionListener(new java.awt.event.ActionListener() {
@@ -88,24 +88,6 @@ public class MainFrame extends javax.swing.JFrame {
                   bRedo.addActionListener(new java.awt.event.ActionListener() {
                            public void actionPerformed(java.awt.event.ActionEvent evt) {
                                     bRedoActionPerformed(evt);
-                           }
-                  });
-
-                  paintTool.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-                           public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                                    paintToolPropertyChange(evt);
-                           }
-                  });
-
-                  colorDialog1.setBackground(new java.awt.Color(233, 247, 247));
-                  colorDialog1.addMouseListener(new java.awt.event.MouseAdapter() {
-                           public void mouseClicked(java.awt.event.MouseEvent evt) {
-                                    colorDialog1MouseClicked(evt);
-                           }
-                  });
-                  colorDialog1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-                           public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                                    colorDialog1PropertyChange(evt);
                            }
                   });
 
@@ -129,37 +111,36 @@ public class MainFrame extends javax.swing.JFrame {
                            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                            .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addContainerGap()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                             .addComponent(bUndo)
-                                             .addComponent(bRedo))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                             .addComponent(bUndo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                             .addComponent(bRedo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(paintTool, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(paintTool1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(12, 12, 12)
+                                    .addComponent(strokeState1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(strokeState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(colorDialog1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(34, 34, 34)
+                                    .addComponent(colorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(30, 30, 30)
                                     .addComponent(bLibrary)
-                                    .addGap(27, 27, 27)
-                                    .addComponent(bReplay)
-                                    .addContainerGap(132, Short.MAX_VALUE))
+                                    .addGap(39, 39, 39)
+                                    .addComponent(bReplay, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addContainerGap(81, Short.MAX_VALUE))
                   );
                   jPanel1Layout.setVerticalGroup(
                            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                           .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addContainerGap()
+                           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                             .addComponent(strokeState1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                                      .addComponent(bUndo)
+                                                      .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                      .addComponent(bRedo))
+                                             .addComponent(paintTool1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                              .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                       .addComponent(bLibrary)
                                                       .addComponent(bReplay))
-                                             .addComponent(colorDialog1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                             .addComponent(strokeState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                             .addComponent(paintTool, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                      .addComponent(bUndo)
-                                                      .addGap(18, 18, 18)
-                                                      .addComponent(bRedo)))
-                                    .addContainerGap(8, Short.MAX_VALUE))
+                                             .addComponent(colorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                   );
 
                   jMenuBar1.setMargin(new java.awt.Insets(0, 0, 0, 500));
@@ -228,9 +209,9 @@ public class MainFrame extends javax.swing.JFrame {
                   getContentPane().setLayout(layout);
                   layout.setHorizontalGroup(
                            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                           .addGroup(layout.createSequentialGroup()
-                                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                              .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                              .addComponent(scrollPane))
                                     .addContainerGap())
@@ -239,9 +220,9 @@ public class MainFrame extends javax.swing.JFrame {
                            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                            .addGroup(layout.createSequentialGroup()
                                     .addContainerGap()
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
                                     .addContainerGap())
                   );
 
@@ -389,7 +370,7 @@ public class MainFrame extends javax.swing.JFrame {
          private javax.swing.JButton bRedo;
          private javax.swing.JButton bReplay;
          private javax.swing.JButton bUndo;
-         private properties.ColorDialog colorDialog1;
+         private properties.ColorDialog colorDialog;
          private javax.swing.JMenuItem exitFile;
          private javax.swing.JMenu jMenu4;
          private javax.swing.JMenuBar jMenuBar1;
@@ -400,9 +381,9 @@ public class MainFrame extends javax.swing.JFrame {
          private javax.swing.JMenu miNew;
          private javax.swing.JMenuItem newFile;
          private javax.swing.JMenuItem openFile;
-         private properties.PaintTool paintTool;
+         private properties.PaintTool paintTool1;
          private javax.swing.JMenuItem saveFile;
          private javax.swing.JScrollPane scrollPane;
-         private properties.StrokeState strokeState;
+         private properties.StrokeState strokeState1;
          // End of variables declaration//GEN-END:variables
 }

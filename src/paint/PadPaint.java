@@ -3,7 +3,6 @@ package paint;
 import properties.ColorDialog;
 import properties.StrokeState;
 import properties.PaintTool;
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -77,20 +76,19 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                   g2d.dispose();
                   // khoi tao luong anh viet len 
                   buff_img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-                 // khoi taO DATA cho PaintState
+                  // khoi taO DATA cho PaintState
                   paintState.setData(org_img);
                   // set trang thai dau tien la dung chuot
                   initState();
                   this.addMouseListener(this);
                   this.addMouseMotionListener(this);
-                   this.setSize(new Dimension(width, height));
+                  this.setSize(new Dimension(width, height));
 
          }
 
          public void initState() {
                   paintState.addDrawState(pencil);
-//                  paintState.addDrawStep(PaintState.PAINTTING);
- paintState.addDrawStep( );
+                  paintState.addDrawStep();
          }
 
          public BufferedImage getBuffer() {
@@ -108,106 +106,82 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                            return;
                   }
                   //Lay ra trang thai cuoi de tro lai trang thai truoc do
-//                  int stepState = paintState.removeEndStep();
                   paintState.removeEndStep();
                   redoState.addDrawStep();
-         //         if (stepState == 6) {
 
-                           //khoi tao mot buffer moi de ve len panel
-                           buff_img = new BufferedImage(org_img.getWidth(), org_img.getHeight(), BufferedImage.TYPE_INT_RGB);
-                           g2d = (Graphics2D) buff_img.getGraphics();
-                           refresh();
-                           //Xoa + lay ra+ cat vao redo  trang thai cuoi
-                           DrawType tempDrawType = paintState.removeEndShape();
-                           redoState.addDrawState(tempDrawType);
-                           
-                           //Ve lai toan bo trang thai cua anh tu luc dau den luc 
-                          // int shapeIndex = 0;
- //                          for (int i = 0; i < paintState.getDrawStepList().size(); i++) {
-                         for (int i = 0; i < paintState.getStepCount(); i++) {
+                  //khoi tao mot buffer moi de ve len panel
+                  buff_img = new BufferedImage(org_img.getWidth(), org_img.getHeight(), BufferedImage.TYPE_INT_RGB);
+                  g2d = (Graphics2D) buff_img.getGraphics();
+                  refresh();
+                  //Xoa + lay ra+ cat vao redo  trang thai cuoi
+                  DrawType tempDrawType = paintState.removeEndShape();
+                  redoState.addDrawState(tempDrawType);
+
+                  //Ve lai toan bo trang thai cua anh tu luc dau den luc 
+                  for (int i = 0; i < paintState.getStepCount(); i++) {
 //
-//                                    int inStepState = paintState.getDrawStepList().get(i);
-//                                    //Lay tung trang thia cua buoc ve
-//                                    switch (inStepState) {
-//
-//                                             case PaintState.PAINTTING:
-                                                      //Neu la painting thi se ve lai toan bo anh tu dau
-                                                      DrawType inDrawType = paintState.getListState().get(i);
-                                                      if (inDrawType instanceof Line) {
-                                                               Line inLine = (Line) inDrawType;
-                                                               inLine.draw(g2d);
+                           DrawType inDrawType = paintState.getListState().get(i);
+                           if (inDrawType instanceof Line) {
+                                    Line inLine = (Line) inDrawType;
+                                    inLine.draw(g2d);
 
-                                                      } else if (inDrawType instanceof Oval) {
-                                                               Oval inOval = (Oval) inDrawType;
-                                                               inOval.draw(g2d);
-                                                      } else if (inDrawType instanceof Pencil) {
-                                                               Pencil inPencil = (Pencil) inDrawType;
-                                                               for (int j = 1; j < inPencil.getDraggedPoint().size(); j++) {
-                                                                        inPencil.setPoint(inPencil.getDraggedPoint().get(j - 1), inPencil.getDraggedPoint().get(j));
-                                                                        inPencil.draw(g2d);
-                                                               }
+                           } else if (inDrawType instanceof Oval) {
+                                    Oval inOval = (Oval) inDrawType;
+                                    inOval.draw(g2d);
+                           } else if (inDrawType instanceof Pencil) {
+                                    Pencil inPencil = (Pencil) inDrawType;
+                                    for (int j = 1; j < inPencil.getDraggedPoint().size(); j++) {
+                                             inPencil.setPoint(inPencil.getDraggedPoint().get(j - 1), inPencil.getDraggedPoint().get(j));
+                                             inPencil.draw(g2d);
+                                    }
 
-                                                      }else if (inDrawType instanceof Bucket) {
-                                                               Bucket inBucket = (Bucket) inDrawType;
-                                                               inBucket.draw(buff_img);
-                                                      }
-//                                                      shapeIndex++;
-                                                    //  break;
-                                    //}
-                          }
-            //      }
+                           } else if (inDrawType instanceof Bucket) {
+                                    Bucket inBucket = (Bucket) inDrawType;
+                                    inBucket.draw(buff_img);
+                           }
+
+                  }
+
                   repaint();
          }
 
          public void redo() {
-                  System.out.println("paint.PadPaint.redo()");
                   if (!redoState.isEmpty()) {
-   //                        int stepState = redoState.removeEndStep();
-//                           paintState.addDrawStep(stepState);
-                           paintState.addDrawStep( );
+                           paintState.addDrawStep();
                            DrawType tempDrawType = redoState.removeEndShape();
                            paintState.addDrawState(tempDrawType);
                            buff_img = new BufferedImage(org_img.getWidth(), org_img.getHeight(), BufferedImage.TYPE_INT_RGB);
                            g2d = (Graphics2D) buff_img.getGraphics();
                            refresh();
-                           //Ve lai trang thai truoc do
-                 //          int shapeIndex = 0;
-//                           for (int i = 0; i < paintState.getDrawStepList().size(); i++) {
                            for (int i = 0; i < paintState.getStepCount(); i++) {
-//                                    int inStepState = paintState.getDrawStepList().get(i);
-//                                    //Lay tung trang thia cua buoc ve
-//                                    switch (inStepState) {
 
-                                     //        case PaintState.PAINTTING:
-                                                      DrawType inDrawType = paintState.getListState().get(i);
-                                                      if (inDrawType instanceof Line) {
-                                                               Line inLine = (Line) inDrawType;
-                                                               inLine.draw(g2d);
+                                    DrawType inDrawType = paintState.getListState().get(i);
+                                    if (inDrawType instanceof Line) {
+                                             Line inLine = (Line) inDrawType;
+                                             inLine.draw(g2d);
 
-                                                      } else if (inDrawType instanceof Rectangle) {
-                                                               Rectangle inRect = (Rectangle) inDrawType;
-                                                               inRect.draw(g2d);
+                                    } else if (inDrawType instanceof Rectangle) {
+                                             Rectangle inRect = (Rectangle) inDrawType;
+                                             inRect.draw(g2d);
 
-                                                      } else if (inDrawType instanceof Oval) {
-                                                               Oval inOval = (Oval) inDrawType;
-                                                               inOval.draw(g2d);
-                                                      } else if (inDrawType instanceof Pencil) {
-                                                               Pencil inPencil = (Pencil) inDrawType;
-                                                               for (int j = 1; j < inPencil.getDraggedPoint().size(); j++) {
-                                                                        inPencil.setPoint(inPencil.getDraggedPoint().get(j - 1), inPencil.getDraggedPoint().get(j));
-                                                                        inPencil.draw(g2d);
-                                                               }
-
-                                                      } //update by Khanh
-                                                      else if (inDrawType instanceof Bucket) {
-                                                               Bucket inBucket = (Bucket) inDrawType;
-                                                               inBucket.draw(buff_img);
-                                                      }
-//                                                      shapeIndex++;
+                                    } else if (inDrawType instanceof Oval) {
+                                             Oval inOval = (Oval) inDrawType;
+                                             inOval.draw(g2d);
+                                    } else if (inDrawType instanceof Pencil) {
+                                             Pencil inPencil = (Pencil) inDrawType;
+                                             for (int j = 1; j < inPencil.getDraggedPoint().size(); j++) {
+                                                      inPencil.setPoint(inPencil.getDraggedPoint().get(j - 1), inPencil.getDraggedPoint().get(j));
+                                                      inPencil.draw(g2d);
+                                             }
+                                    } else if (inDrawType instanceof Bucket) {
+                                             Bucket inBucket = (Bucket) inDrawType;
+                                             inBucket.draw(buff_img);
                                     }
 
-                                    repaint();
-                     //      }
+                           }
+
+                           repaint();
+
                   }
          }
 
@@ -227,16 +201,13 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                   g2.fillRect(0, 0, getSize().width, getSize().height);
                   g2.dispose();
                   paintState.setData(org_img);
-//                  isSaved = true;
                   refresh();
                   repaint();
          }
 
-         public void loadImage(BufferedImage img) {
-                  loadImage((Image) img);
-         }
-
-         public void loadImage(java.awt.Image img) {
+         public void loadImage(BufferedImage img2) {
+                  Image img =(Image)img2;
+         
                   if (img != null) {
                            flush();
                            org_img = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
@@ -247,7 +218,7 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                            g2 = (Graphics2D) buff_img.getGraphics();
                            g2.drawImage(img, 0, 0, img.getWidth(null), img.getHeight(null), this);
                            g2.dispose();
-                          paintState.setData(org_img);
+                           paintState.setData(org_img);
                            g2d = (Graphics2D) buff_img.getGraphics();
 
                            this.setSize(new Dimension(org_img.getWidth(), org_img.getHeight()));
@@ -403,7 +374,7 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                   // nha chuot ra la ve 
                   switch (paintTool.getDrawMode()) {
                            case LINE:
-                           //         System.out.println("paint.PadPaint.mouseReleased()");
+                                    //         System.out.println("paint.PadPaint.mouseReleased()");
                                     paintState.addDrawState(line);
                                     line.draw(g2d);
                                     break;
@@ -422,9 +393,8 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                                     paintState.addDrawState(pencil);
                                     break;
 
-                  }//</editor-fold>
-//                  paintState.addDrawStep(PaintState.PAINTTING);
-            paintState.addDrawStep( );
+                  }
+                  paintState.addDrawStep();
                   start = null;
                   end = null;
                   repaint();
@@ -436,7 +406,7 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                   end = e.getPoint();
                   switch (paintTool.getDrawMode()) {
                            case LINE:
-                   //                 System.out.println("paint.PadPaint.mouseDragged()" + end.toString());
+                                    //                 System.out.println("paint.PadPaint.mouseDragged()" + end.toString());
                                     line.setPoint(start, end);
                                     line.addDraggedPoint(end);
                                     break;
@@ -454,7 +424,7 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                                     eraser.addDraggedPoint(end);
                                     start = end;
                                     eraser.draw(g2d);
-                                   locationEraser.move((int) (e.getPoint().x), (int) (e.getPoint().y));
+                                    locationEraser.move((int) (e.getPoint().x), (int) (e.getPoint().y));
                                     break;
                            case PENCIL:
                                     pencil.setPoint(start, end);

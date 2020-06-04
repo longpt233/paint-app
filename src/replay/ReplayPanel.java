@@ -252,16 +252,11 @@ public class ReplayPanel extends JPanel implements Runnable {
          @Override
          public void run() {
 
-//                  while (currentStep < paintState.getDrawStepList().size()) {
                             while (currentStep < paintState.getStepCount()) {
                            if (isPlaying == false) {
                                     thread.suspend();
                            }
 
-//                           int inStepState = listDrawStep.get(currentStep);
-//                           //Lay tung trang thia cua buoc ve
-//                           switch (inStepState) {
-//                                    case PaintState.PAINTTING:
                                              if (listPoint == null) {
                                                       DrawType inDrawType = listState.get(currentState);
                                                       if (inDrawType instanceof Line) {
@@ -308,12 +303,7 @@ public class ReplayPanel extends JPanel implements Runnable {
 
                                                       }
                                              }
-                                       //      break;
-                        //   }
-
-//                           if (inStepState != PaintState.PAINTTING) {
-//                                    currentStep++;
-//                           }
+                               
                            try {
                                     Thread.sleep(delay);
                            } catch (InterruptedException ex) {

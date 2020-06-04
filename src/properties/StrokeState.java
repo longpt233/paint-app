@@ -53,6 +53,8 @@ public class StrokeState extends javax.swing.JPanel {
                   jComboBox2 = new javax.swing.JComboBox();
                   jComboBox3 = new javax.swing.JComboBox();
 
+                  setForeground(new java.awt.Color(153, 153, 153));
+
                   jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " " }));
                   jComboBox2.addItemListener(new java.awt.event.ItemListener() {
                            public void itemStateChanged(java.awt.event.ItemEvent evt) {

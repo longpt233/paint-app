@@ -7,7 +7,6 @@ package library;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
@@ -37,25 +36,17 @@ public class ImagePane extends JPanel {
                   this.setSize(new Dimension(COL * ImageCell.WIDTH, ROW * ImageCell.HEIGHT));
                   addMouseListener(new MouseAdapter() {
                            public void mousePressed(MouseEvent e) {
-                                    location = e.getPoint();
-                                    if (location.x % ImageCell.HEIGHT == 0 || location.y % ImageCell.WIDTH == 0) {
-                                             return;
-                                    }
-                                    currrow = location.y / ImageCell.HEIGHT;
-                                    currcol = location.x / ImageCell.WIDTH;
-                                    if (currcol < 0 || currcol > COL - 1 || currrow < 0 || currrow > ROW - 1) {
-                                             return;
-                                    }
-                                    //  g.drawImage(images[currrow][currcol].getImage(), currcol * ImageCell.WIDTH - 7, currrow * ImageCell.HEIGHT - 7, ImageCell.WIDTH + 20, ImageCell.HEIGHT + 20, null);
-                                    setImage();
-                                    repaint();
-                           }
+                                   
+                                             location = e.getPoint();
+                                             currrow = location.y / ImageCell.HEIGHT;
+                                             currcol = location.x / ImageCell.WIDTH;
+                                             setImage();
+                            }
                   });
          }
 
          public void setImage() {
                   chose = currrow * COL + currcol;
-                 // System.out.println("you chose pic"+chose);
                   try {
                            selectedImage = ImageIO.read(getClass().getResource("/Library/Cars/" + chose + ".png"));
                   } catch (IOException ex) {

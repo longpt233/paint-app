@@ -5,9 +5,7 @@
  */
 package properties;
 
-import java.awt.Color;
-import java.awt.Image;
-import java.awt.Toolkit;
+import java.awt.Color; 
 import javax.swing.ImageIcon;
 
 public class ColorDialog extends javax.swing.JPanel {
@@ -47,6 +45,8 @@ public class ColorDialog extends javax.swing.JPanel {
                   jLabel1 = new javax.swing.JLabel();
                   colorPane = new properties.ColorPane();
 
+                  setBackground(new java.awt.Color(153, 153, 153));
+
                   buttonGroup1.add(bFillColor);
                   bFillColor.addActionListener(new java.awt.event.ActionListener() {
                            public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,13 +54,14 @@ public class ColorDialog extends javax.swing.JPanel {
                            }
                   });
 
-                  jLabel2.setText("      Fill");
+                  jLabel2.setText("Fill");
 
                   buttonGroup1.add(bStrokeColor);
                   bStrokeColor.setSelected(true);
 
-                  jLabel1.setText("  Stroke");
+                  jLabel1.setText("Stroke");
 
+                  colorPane.setBackground(new java.awt.Color(153, 153, 153));
                   colorPane.addMouseListener(new java.awt.event.MouseAdapter() {
                            public void mousePressed(java.awt.event.MouseEvent evt) {
                                     colorPaneMousePressed(evt);
@@ -72,32 +73,32 @@ public class ColorDialog extends javax.swing.JPanel {
                   layout.setHorizontalGroup(
                            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                            .addGroup(layout.createSequentialGroup()
-                                    .addContainerGap(10, Short.MAX_VALUE)
+                                    .addContainerGap()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                             .addComponent(bStrokeColor, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                             .addComponent(jLabel1))
-                                    .addGap(6, 6, 6)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                             .addComponent(jLabel2)
-                                             .addComponent(bFillColor, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addComponent(colorPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                             .addGroup(layout.createSequentialGroup()
+                                                      .addComponent(bStrokeColor, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                      .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                      .addComponent(bFillColor, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                      .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                      .addComponent(colorPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                      .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                             .addGroup(layout.createSequentialGroup()
+                                                      .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                      .addGap(18, 18, 18)
+                                                      .addComponent(jLabel2)
+                                                      .addGap(286, 286, 286))))
                   );
                   layout.setVerticalGroup(
                            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                            .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                             .addGroup(layout.createSequentialGroup()
-                                                      .addComponent(bStrokeColor, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                      .addGap(11, 11, 11)
-                                                      .addComponent(jLabel1))
-                                             .addGroup(layout.createSequentialGroup()
-                                                      .addComponent(bFillColor, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                      .addGap(13, 13, 13)
-                                                      .addComponent(jLabel2))
-                                             .addGroup(layout.createSequentialGroup()
-                                                      .addContainerGap()
-                                                      .addComponent(colorPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                             .addComponent(bStrokeColor, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                             .addComponent(bFillColor, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                             .addComponent(colorPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                             .addComponent(jLabel1)
+                                             .addComponent(jLabel2))
                                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                   );
          }// </editor-fold>//GEN-END:initComponents
@@ -105,8 +106,9 @@ public class ColorDialog extends javax.swing.JPanel {
     private void bFillColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFillColorActionPerformed
     }//GEN-LAST:event_bFillColorActionPerformed
 
-    private void colorPaneMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPaneMousePressed
-        if (bStrokeColor.isSelected()) {
+         private void colorPaneMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPaneMousePressed
+                  // TODO add your handling code here:
+                          if (bStrokeColor.isSelected()) {
             strokeIcon = colorPane.getImage();
             strokeColor = colorPane.getColor();
             bStrokeColor.setIcon(strokeIcon);
@@ -115,7 +117,7 @@ public class ColorDialog extends javax.swing.JPanel {
             fillColor = colorPane.getColor();
             bFillColor.setIcon(fillIcon);
         }
-    }//GEN-LAST:event_colorPaneMousePressed
+         }//GEN-LAST:event_colorPaneMousePressed
 
 
          // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -135,6 +137,8 @@ public class ColorDialog extends javax.swing.JPanel {
     public Color getFillColor() {
         return fillColor;
     }
+ 
+        
 
  
   
