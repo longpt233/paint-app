@@ -210,10 +210,7 @@ public class ReplayPanel extends JPanel implements Runnable {
                                              }
                                     } else if (drawType instanceof Rectangle) {
                                              rect.setPoint(listPoint.get(0), listPoint.get(cStateElement));
-                                             rect.draw(g2);
-                                             System.out.println("currentState: " + currentState);
-                                             System.out.println("currentStep: " + currentStep);
-                                             System.out.println("currentStateElement: " + cStateElement);
+                                             rect.draw(g2);;
                                              System.out.println("\n");
                                              if (cStateElement == listPoint.size() - 1) {
                                                       rect.draw(g2dBuffer);
@@ -228,10 +225,6 @@ public class ReplayPanel extends JPanel implements Runnable {
 
                                     } else if (drawType instanceof Pencil) {
                                              if (cStateElement < listPoint.size() - 1) {
-                                                      System.out.println("currentState: " + currentState);
-                                                      System.out.println("currentStep: " + currentStep);
-                                                      System.out.println("currentStateElement: " + cStateElement);
-                                                      System.out.println("\n");
                                                       pencil.setPoint(listPoint.get(cStateElement), listPoint.get(cStateElement + 1));
                                                       pencil.draw(g2dBuffer);
                                              }
@@ -241,8 +234,15 @@ public class ReplayPanel extends JPanel implements Runnable {
                                                       eraser.draw(g2dBuffer);
                                              }
                                     } else if (drawType instanceof Bucket ) {
-                                            bucket.setStart(listPoint.get(cStateElement+4));                                               
-                                            bucket.draw(g2dBuffer);
+                                         //   bucket.setStart(listPoint.get(cStateElement+4));   
+                                         if (cStateElement < listPoint.size()) {
+                                    bucket.setStart(listPoint.get(0));
+                                    bucket.setColor(bucket.getColorWithPointAt());
+                                    bucket.draw(g2dBuffer);
+                                             
+                                             System.out.println("replay.ReplayPanel.paintComponent()");
+                                          
+                                    }
                                             
                                     }                                    //   g2dBuffer.dispose();
                            }
@@ -278,17 +278,12 @@ public class ReplayPanel extends JPanel implements Runnable {
                                                       } else if (inDrawType instanceof Eraser){
                                                                 eraser= (Eraser) inDrawType;
                                                                 listPoint=eraser.getDraggedPoint();
-                                                          
+                                                   
                                                       } else if(inDrawType instanceof Bucket) {
-                                                                bucket = (Bucket) inDrawType;                                              
-                                                                bucket.getStart();
-                                                                bucket.getArrPoint();
-                                                                bucket.draw(buff_img);
-                                                                listPoint = null;
-                                                                currentState++;
-                                                                currentStep++;
-                                               
-                                             }
+                                                                bucket = (Bucket) inDrawType;       
+                                                                listPoint = bucket.getPointFirst();
+                                                                System.out.println("replay.ReplayPanel.run()"+listPoint.size());
+                                                       }
                                              } else {   //Neu diem da duoc khoi tao
                                                       //Kiem tra xem hinh hien tai da dat den trang thai cuoi cung cua hinh chua
 

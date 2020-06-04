@@ -16,6 +16,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import shape.*;
@@ -103,6 +104,7 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
 
          public void undo() {
                   if (paintState.isEmpty()) {
+                           paintState.removeAll();
                            return;
                   }
                   //Lay ra trang thai cuoi de tro lai trang thai truoc do
@@ -264,9 +266,9 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                                     case PENCIL:
                                              pencil.draw(g2);
                                              break;
-                                    case BUCKET:
-                                             bucket.draw(buff_img);
-                                             break;
+//                                    case BUCKET:
+//                                             bucket.draw(buff_img);
+//                                             break;
 
                            }
 
@@ -349,10 +351,14 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                            case BUCKET:
                                     bucket = new Bucket();
                                     bucket.setStart(start);
-                                    bucket.setArrPoint(start);
+                                //    bucket.setArrPoint(start);
                                     bucket.setColor(colorChooser.getFillColor());
                                     bucket.draw(buff_img);
-                                    paintState.addDrawState(bucket);
+//                                    ArrayList<Point> temArrayList=bucket.getArrPoint();
+//                                    for(int i =0;i<temArrayList.size();i++){
+//                                             Point tempPoint=temArrayList.get(i);
+//                                             bucket.addDraggedPoint(tempPoint);
+//                                    }
                                     break;
                            case ERASER:
                                     eraser = new Eraser();
@@ -391,6 +397,9 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                                     break;
                            case PENCIL:
                                     paintState.addDrawState(pencil);
+                                    break;
+                           case BUCKET:
+                                    paintState.addDrawState(bucket);
                                     break;
 
                   }
