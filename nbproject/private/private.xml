@@ -3,16 +3,27 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/long/NetBeansProjects/Paint/src/replay/ReplayDialog.java</file>
-            <file>file:/home/long/NetBeansProjects/Paint/src/paint/PadPaint.java</file>
-            <file>file:/home/long/NetBeansProjects/Paint/src/paint/MainFrame.java</file>
-            <file>file:/home/long/NetBeansProjects/Paint/src/shape/Oval.java</file>
-            <file>file:/home/long/NetBeansProjects/Paint/src/shape/DrawType.java</file>
-            <file>file:/home/long/NetBeansProjects/Paint/src/library/ImagePane.java</file>
-            <file>file:/home/long/NetBeansProjects/Paint/src/shape/Eraser.java</file>
-            <file>file:/home/long/NetBeansProjects/Paint/src/library/Library.java</file>
-            <file>file:/home/long/NetBeansProjects/Paint/src/library/ImageCell.java</file>
-            <file>file:/home/long/NetBeansProjects/Paint/src/replay/ReplayPanel.java</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/icon/stroke/stroke3.png</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/properties/ColorCell.java</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/paint/PadPaint.java</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/properties/StrokeState.java</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/icon/stroke/stroke1.png</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/shape/Eraser.java</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/icon/stroke/stroke5.png</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/paint/PaintState.java</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/images/oval.png</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/properties/PaintTool.java</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/replay/ReplayPanel.java</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/icon/stroke/stroke2.png</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/images/pen.png</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/images/line.png</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/images/rectangle.png</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/properties/ColorPane.java</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/shape/Bucket.java</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/paint/MainFrame.java</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/properties/ColorDialog.java</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/icon/stroke/stroke4.png</file>
+            <file>file:/C:/Users/HELLO/Desktop/New%20Folder/Paint/src/replay/ReplayDialog.java</file>
         </group>
     </open-files>
 </project-private>
