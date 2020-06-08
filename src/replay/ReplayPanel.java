@@ -233,11 +233,10 @@ public class ReplayPanel extends JPanel implements Runnable {
                                                       eraser.setPoint(listPoint.get(cStateElement), listPoint.get(cStateElement + 1));
                                                       eraser.draw(g2dBuffer);
                                              }
-                                    } else if (drawType instanceof Bucket ) {
-                                         //   bucket.setStart(listPoint.get(cStateElement+4));   
+                                    } else if (drawType instanceof Bucket ) { 
                                          if (cStateElement < listPoint.size()) {
                                     bucket.setStart(listPoint.get(0));
-                                    bucket.setColor(bucket.getColorWithPointAt());
+                                    bucket.setColor(bucket.getColor());
                                     bucket.draw(g2dBuffer);
                                              
                                              System.out.println("replay.ReplayPanel.paintComponent()");
@@ -280,10 +279,14 @@ public class ReplayPanel extends JPanel implements Runnable {
                                                                 listPoint=eraser.getDraggedPoint();
                                                    
                                                       } else if(inDrawType instanceof Bucket) {
-                                                                bucket = (Bucket) inDrawType;       
-                                                                listPoint = bucket.getPointFirst();
-                                                                System.out.println("replay.ReplayPanel.run()"+listPoint.size());
-                                                       }
+
+                                                                bucket = (Bucket) inDrawType;                                              
+                                                                bucket.getStart();
+                                                               bucket.draw(buff_img); ;
+                                                                currentState++;
+                                                                currentStep++;
+                                               
+                                             }
                                              } else {   //Neu diem da duoc khoi tao
                                                       //Kiem tra xem hinh hien tai da dat den trang thai cuoi cung cua hinh chua
 
