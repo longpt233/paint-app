@@ -20,7 +20,7 @@ import static javax.swing.SwingConstants.CENTER;
 
 public class StrokeState extends javax.swing.JPanel {
 
-    private float strokeThickness = 3f;//kích thước nét vẽ - mặc định là 3
+    private float strokeThickness = 4f;//kích thước nét vẽ mặc định là 3
     private BasicStroke stroke = new BasicStroke(strokeThickness);//kiểu + kích thước nét vẽ
 
     private float[] dash;// kieu net 
@@ -28,11 +28,7 @@ public class StrokeState extends javax.swing.JPanel {
     private static final float[] DASH_1 = null;
 
     private static final float[] DASH_2 = {10f};
-    /* 
-    private static final float[] DASH_3 = {2f};
-    private static final float[] DASH_4 = {1f, 2f, 5f};
-    private static final float[] DASH_5 = {1f, 5f, 5f, 5f};*/
-
+    
     /**
      * Creates new form StrokeState
      */
@@ -116,7 +112,7 @@ public class StrokeState extends javax.swing.JPanel {
 
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
         // TODO add your handling codte here:
-        this.setStrokeThickness((float) (jComboBox2.getSelectedIndex() + 3));
+        this.setStrokeThickness((float) (jComboBox2.getSelectedIndex() + 4));
         this.setStroke(strokeThickness, dash);
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
