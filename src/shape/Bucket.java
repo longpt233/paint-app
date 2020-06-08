@@ -121,4 +121,9 @@ public class Bucket extends Shape implements DrawType {
      public void draw(BufferedImage img) {
         boundaryFill(img);
     }
+
+         @Override
+         public void draw(Graphics2D g2d) {
+                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         }
 }
