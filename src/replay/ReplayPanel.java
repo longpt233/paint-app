@@ -36,8 +36,7 @@ public class ReplayPanel extends JPanel implements Runnable {
          private int currentStep = 0;
          private int cStateElement = 0;
          private ArrayList<Point> listPoint;
-         private ArrayList<DrawType> listState;
-     //    private ArrayList<Integer> listDrawStep;
+         private ArrayList<DrawType> listState; 
          private Graphics2D g2d, g2;
 
          public void setDelay(int delay) {
@@ -48,9 +47,9 @@ public class ReplayPanel extends JPanel implements Runnable {
                   this.bPlay = bPlay;
          }
 
-         public ReplayPanel() {
-                  listState = new ArrayList<>();
-         //         listDrawStep = new ArrayList<>();
+         public ReplayPanel(PaintState paintState) {
+                   this.paintState = paintState;
+                  listState = new ArrayList<>(); 
                   line = new Line();
                   rect = new Rectangle();
                   oval = new Oval();
@@ -60,20 +59,21 @@ public class ReplayPanel extends JPanel implements Runnable {
                   isPlaying = false;
 
                   initComponents();
-                  paintState = new PaintState();
                   this.setSize(909, 439);
-                  //Khoi tao anh
-                  org_img = new BufferedImage(getSize().width, getSize().height, BufferedImage.TYPE_INT_RGB);
-                  g2 = (Graphics2D) org_img.getGraphics();
-                  g2.setColor(Color.WHITE);
-                  g2.fillRect(0, 0, getSize().width, getSize().height);
-                  g2.dispose();
-                  paintState.setData(org_img);
-                  buff_img = new BufferedImage(getSize().width, getSize().height, BufferedImage.TYPE_INT_RGB);
-                  g2 = (Graphics2D) org_img.getGraphics();
-                  g2.drawImage(org_img, 0, 0, null);
-                  g2.dispose();
-                  readState();
+                  listPoint = new ArrayList<>();
+                  listState = paintState.getListState();
+                  
+                  
+                  int w = paintState.getWidth();
+                  int h = paintState.getHeight();
+                  int[] data = paintState.getData();
+                  org_img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+                  org_img.getRaster().setPixels(0, 0, w, h, data);
+                  buff_img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+                  g2d = (Graphics2D) buff_img.getGraphics();
+                  g2d.drawImage(org_img, 0, 0, null);
+                  this.setSize(new Dimension(w, h));
+                  this.revalidate();
 
          }
 
@@ -83,8 +83,7 @@ public class ReplayPanel extends JPanel implements Runnable {
                            refresh();
                            thread = new Thread(this);
                            isPlaying = true;
-                           thread.start();
-                           //thread.resume();
+                           thread.start(); 
                   } else {
                            thread.resume();
                   }
@@ -92,24 +91,19 @@ public class ReplayPanel extends JPanel implements Runnable {
          }
 
          public void pauseReplay() {
-                  isPlaying = false;
-                  //       thread.suspend();
+                  isPlaying = false; 
          }
 
-         public void flush() {
-                  if (isPlaying) {
-                           bPlay.setIcon(new ImageIcon(getClass().getResource("/icon/pause.png")));
-                           isPlaying = false;
-                  }
-                  //cấp phát một vùng nhớ mới để lấy trạng thái mới mà không tác động đé padpaint
-                  paintState = new PaintState();
-                  org_img = new BufferedImage(getSize().width, getSize().height, BufferedImage.TYPE_INT_RGB);
-                  g2 = (Graphics2D) org_img.getGraphics();
-                  g2.setColor(Color.WHITE);
-                  g2.fillRect(0, 0, getSize().width, getSize().height);
-                  g2.dispose();
-                  paintState.setData(org_img);
-         }
+//         public void flush() {
+//                  if (isPlaying) {
+//                           bPlay.setIcon(new ImageIcon(getClass().getResource("/icon/pause.png")));
+//                           isPlaying = false;
+//                  }
+//                  //cấp phát một vùng nhớ mới để lấy trạng thái mới mà không tác động đé padpaint
+//                  paintState = new PaintState();
+//                 
+//                  paintState.setData(org_img);
+//         }
 
          public boolean isPlaying() {
                   return isPlaying;
@@ -134,35 +128,7 @@ public class ReplayPanel extends JPanel implements Runnable {
 
          // Variables declaration - do not modify//GEN-BEGIN:variables
          // End of variables declaration//GEN-END:variables
-    public void setPaintState(PaintState paintState) {
-                  this.paintState = paintState;
-                  readState();
-         }
-
-         public void readState() {
-                  listPoint = new ArrayList<>();
-                  listState = paintState.getListState();
-        //          listDrawStep = paintState.getDrawStepList();
-                  org_img.flush();
-                  buff_img.flush();
-                  System.gc();
-                  org_img = null;
-                  buff_img = null;
-                  int w = paintState.getWidth();
-                  int h = paintState.getHeight();
-                  int[] data = paintState.getData();
-                  org_img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-                  org_img.getRaster().setPixels(0, 0, w, h, data);
-                  buff_img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-                  g2d = (Graphics2D) buff_img.getGraphics();
-                  g2d.drawImage(org_img, 0, 0, null);
-                  this.setSize(new Dimension(w, h));
-                  this.setPreferredSize(new Dimension(w, h));
-                  this.setMinimumSize(new Dimension(w, h));
-                  this.revalidate();
-
-         }
-
+     
          public void refresh() {
                   g2 = (Graphics2D) buff_img.getGraphics();
                   g2.drawImage(org_img, 0, 0, null);

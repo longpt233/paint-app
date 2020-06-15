@@ -213,6 +213,10 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
          
                   if (img != null) {
                            flush();
+                           org_img = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
+                             g2 = (Graphics2D) org_img.getGraphics();
+                             g2.drawImage(img, 0, 0, img.getWidth(null), img.getHeight(null), this);
+                           g2.dispose();
                            buff_img = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
                            g2 = (Graphics2D) buff_img.getGraphics();
                            g2.drawImage(img, 0, 0, img.getWidth(null), img.getHeight(null), this);
