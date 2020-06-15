@@ -48,21 +48,11 @@ public class StrokeState extends javax.swing.JPanel {
                                     jComboBox2ItemStateChanged(evt);
                            }
                   });
-                  jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-                           public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                    jComboBox2ActionPerformed(evt);
-                           }
-                  });
 
                   jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Stroke 1", "Stroke 2" }));
                   jComboBox3.addItemListener(new java.awt.event.ItemListener() {
                            public void itemStateChanged(java.awt.event.ItemEvent evt) {
                                     jComboBox3ItemStateChanged(evt);
-                           }
-                  });
-                  jComboBox3.addActionListener(new java.awt.event.ActionListener() {
-                           public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                    jComboBox3ActionPerformed(evt);
                            }
                   });
 
@@ -105,14 +95,6 @@ public class StrokeState extends javax.swing.JPanel {
         this.setStrokeThickness((float) (jComboBox2.getSelectedIndex() + 4));
         this.setStroke(strokeThickness, dash);
     }//GEN-LAST:event_jComboBox2ItemStateChanged
-
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     public BasicStroke getStroke() {
         return this.stroke;

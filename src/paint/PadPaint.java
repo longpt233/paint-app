@@ -16,7 +16,6 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import shape.*;
@@ -116,7 +115,7 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                   g2d = (Graphics2D) buff_img.getGraphics();
                   refresh();
                   //Xoa + lay ra+ cat vao redo  trang thai cuoi
-                  DrawType tempDrawType = paintState.removeEndShape();
+                  DrawType tempDrawType = paintState.removeEndState();
                   redoState.addDrawState(tempDrawType);
 
                   //Ve lai toan bo trang thai cua anh tu luc dau den luc 
@@ -150,7 +149,7 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
          public void redo() {
                   if (!redoState.isEmpty()) {
                            paintState.addDrawStep();
-                           DrawType tempDrawType = redoState.removeEndShape();
+                           DrawType tempDrawType = redoState.removeEndState();
                            paintState.addDrawState(tempDrawType);
                            buff_img = new BufferedImage(org_img.getWidth(), org_img.getHeight(), BufferedImage.TYPE_INT_RGB);
                            g2d = (Graphics2D) buff_img.getGraphics();
@@ -187,6 +186,8 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                   }
          }
 
+         
+                  // gan tuong duong voi cai khoi tao 
          public void flush() {
                   start = null;
                   end = null;
@@ -212,10 +213,6 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
          
                   if (img != null) {
                            flush();
-                           org_img = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
-                           g2 = (Graphics2D) org_img.getGraphics();
-                           g2.drawImage(img, 0, 0, img.getWidth(null), img.getHeight(null), this);
-                           g2.dispose();
                            buff_img = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
                            g2 = (Graphics2D) buff_img.getGraphics();
                            g2.drawImage(img, 0, 0, img.getWidth(null), img.getHeight(null), this);
@@ -239,7 +236,7 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                   }
          }
 
-         //Lay g2d ve thi se bi, nhung ma lay g2 ve thi se khong bi
+         //Lay g2d ve thi se bi lag , nhung ma lay g2 ve thi se khong bi
          @Override
          public void paintComponent(Graphics g) {
                   super.paintComponent(g);
@@ -252,6 +249,7 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                            refresh();
                   }
                   g2.scale(1, 1);
+                  //. ve buf anh len panel 
                   g2.drawImage(buff_img, null, 0, 0);
                   if (start != null && end != null) {
                            switch (paintTool.getDrawMode()) {
@@ -266,9 +264,6 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                                     case PENCIL:
                                              pencil.draw(g2);
                                              break;
-//                                    case BUCKET:
-//                                             bucket.draw(buff_img);
-//                                             break;
 
                            }
 
@@ -350,15 +345,9 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                                     break;
                            case BUCKET:
                                     bucket = new Bucket();
-                                    bucket.setStart(start);
-                                //    bucket.setArrPoint(start);
+                                    bucket.setStart(start); 
                                     bucket.setColor(colorChooser.getFillColor());
-                                    bucket.draw(buff_img);
-//                                    ArrayList<Point> temArrayList=bucket.getArrPoint();
-//                                    for(int i =0;i<temArrayList.size();i++){
-//                                             Point tempPoint=temArrayList.get(i);
-//                                             bucket.addDraggedPoint(tempPoint);
-//                                    }
+                                    bucket.draw(buff_img); 
                                     break;
                            case ERASER:
                                     eraser = new Eraser();

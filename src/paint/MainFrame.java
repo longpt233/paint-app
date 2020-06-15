@@ -13,8 +13,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 import library.Library;
@@ -235,18 +233,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     public void openAnImage() {
                   JFileChooser filechooser = new JFileChooser("Open A File");
-                  int result = 0;
-                  FileNameExtensionFilter bitmap = new FileNameExtensionFilter("Bitmap Files (*.bmp;*.dib)", "bmp", "dib");
-                  filechooser.setFileFilter(bitmap);
-                  FileNameExtensionFilter jpeg = new FileNameExtensionFilter("JPEG (*.jpg;*.jpeg;*.jpe;*jfif)", "jpg", "jpeg", "jpe", "jfif");
-                  filechooser.setFileFilter(jpeg);
-                  FileNameExtensionFilter png = new FileNameExtensionFilter("PNG (*.png)", "png");
-                  filechooser.setFileFilter(png);
-                  FileNameExtensionFilter allFile = new FileNameExtensionFilter("All Picture Files", "bmp", "dib", "jpg", "jpeg", "jpe", "jfif", "gif", "tif", "tiff", "png", "ico");
-                  filechooser.setFileFilter(allFile);
+                  int result = 0; 
 
                   result = filechooser.showOpenDialog(null);
-                  if (result == JFileChooser.APPROVE_OPTION) {
+                  if (result == JFileChooser.APPROVE_OPTION) {    // neu ma nguoiu dunug chon j do 
                            File file = filechooser.getSelectedFile();
                            BufferedImage img = null;
                            try {
@@ -271,40 +261,23 @@ public class MainFrame extends javax.swing.JFrame {
          public boolean saveImageToFile() {
                   JFileChooser saveFile = new JFileChooser("Save File");
                   int result = 0;
-                  FileFilter filler;
-                  BufferedImage img = null;
-
-                  FileNameExtensionFilter jpeg = new FileNameExtensionFilter("JPEG (*.jpg;*.jpeg;*.jpe;*jfif)", "jpg", "jpeg", "jpe", "jfif");
-                  saveFile.setFileFilter(jpeg);
-                  FileNameExtensionFilter gif = new FileNameExtensionFilter("GIF (*.gif)", "gif");
-                  saveFile.setFileFilter(gif);
-                  FileNameExtensionFilter png = new FileNameExtensionFilter("PNG (*.png)", "png");
-                  saveFile.setFileFilter(png);
 
                   File demo = new File("Untitled.png");
                   saveFile.setSelectedFile(demo);
                   result = saveFile.showSaveDialog(null);
 
                   if (result == JFileChooser.APPROVE_OPTION) {
-                           filler = saveFile.getFileFilter();
                            fileImage = saveFile.getCurrentDirectory();
 
                            // cai duogn dan nay hdh khac nhau la khac nhau   window "\\"
                            fileName = fileImage.getPath() + "/" + saveFile.getSelectedFile().getName();
-                           fileImage = new File(fileName);                                              //tạo file để lưu
+                           fileImage = new File(fileName);                                         
 
                            String extension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
-                           if (fileImage.exists() == true) {
-                                    int r = JOptionPane.showConfirmDialog(this, saveFile.getSelectedFile().getName() + " already exists." + "\nDo you want to replace it?", "hello", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-                                    if (r == JOptionPane.YES_OPTION) {
-
-                                             padPaint.saveImage(fileImage, extension);
-                                             return true;
-                                    }
-                           } else {
+                   
                                     padPaint.saveImage(fileImage, extension);
                                     return true;
-                           }
+                      
                   }
                   return false;
          }
@@ -336,8 +309,6 @@ public class MainFrame extends javax.swing.JFrame {
          }//GEN-LAST:event_paintToolPropertyChange
 
          private void bReplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bReplayActionPerformed
-                  // TODO add your handling code here:
-                  //         padPaint.toolChange();
                   System.gc();
                   new ReplayDialog(this, true, padPaint.getListState());
 
