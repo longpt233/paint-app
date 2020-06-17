@@ -3,16 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/long/NetBeansProjects/Paint/src/icon/stop.png</file>
             <file>file:/home/long/NetBeansProjects/Paint/src/replay/ReplayDialog.java</file>
             <file>file:/home/long/NetBeansProjects/Paint/src/icon/rect.png</file>
-            <file>file:/home/long/NetBeansProjects/Paint/src/icon/pause.png</file>
             <file>file:/home/long/NetBeansProjects/Paint/src/paint/PadPaint.java</file>
             <file>file:/home/long/NetBeansProjects/Paint/src/icon/pen.png</file>
-            <file>file:/home/long/NetBeansProjects/Paint/src/shape/Line.java</file>
-            <file>file:/home/long/NetBeansProjects/Paint/src/paint/MainFrame.java</file>
-            <file>file:/home/long/NetBeansProjects/Paint/src/icon/stroke1.png</file>
-            <file>file:/home/long/NetBeansProjects/Paint/src/icon/stroke2.png</file>
+            <file>file:/home/long/NetBeansProjects/Paint/src/properties/StrokeState.java</file>
             <file>file:/home/long/NetBeansProjects/Paint/src/icon/play.png</file>
             <file>file:/home/long/NetBeansProjects/Paint/src/replay/ReplayPanel.java</file>
         </group>

@@ -12,13 +12,13 @@ public class PaintState implements Serializable{
     private int StepCount=0;
     // do thi mang nay dc add them motj trong thai painting
     private ArrayList<DrawType> listState;
-    private DrawType drawType;
+   // private DrawType drawType;
     private int[] data = null;  
     private int w,h;
     public PaintState(){
         listState = new ArrayList<>();
         StepCount=0;
-        listState.add(drawType);
+       // listState.add(drawType);
     }
     public void addDrawStep(){
         StepCount++;

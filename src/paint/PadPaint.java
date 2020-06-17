@@ -102,8 +102,10 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
          }
 
          public void undo() {
+                  System.out.println("paint.PadPaint.undo()"+paintState.getStepCount()+" "+paintState.getListState().size());
+                  
                   if (paintState.isEmpty()) {
-                           paintState.removeAll();
+                        //   paintState.removeAll();
                            return;
                   }
                   //Lay ra trang thai cuoi de tro lai trang thai truoc do
@@ -119,13 +121,12 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                   redoState.addDrawState(tempDrawType);
 
                   //Ve lai toan bo trang thai cua anh tu luc dau den luc 
-                  for (int i = 0; i < paintState.getStepCount(); i++) {
+                  for (int i = 0; i <paintState.getStepCount(); i++) {
 //
                            DrawType inDrawType = paintState.getListState().get(i);
                            if (inDrawType instanceof Line) {
                                     Line inLine = (Line) inDrawType;
                                     inLine.draw(g2d);
-
                            } else if (inDrawType instanceof Oval) {
                                     Oval inOval = (Oval) inDrawType;
                                     inOval.draw(g2d);
@@ -135,11 +136,15 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                                              inPencil.setPoint(inPencil.getDraggedPoint().get(j - 1), inPencil.getDraggedPoint().get(j));
                                              inPencil.draw(g2d);
                                     }
-
                            } else if (inDrawType instanceof Bucket) {
                                     Bucket inBucket = (Bucket) inDrawType;
                                     inBucket.draw(buff_img);
                            }
+                           else if (inDrawType instanceof Rectangle) {
+                                             Rectangle inRect = (Rectangle) inDrawType;
+                                             inRect.draw(g2d);
+
+                                    } 
 
                   }
 
@@ -147,6 +152,7 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
          }
 
          public void redo() {
+                  System.out.println("paint.PadPaint.undo()"+paintState.getStepCount()+" "+paintState.getListState().size());
                   if (!redoState.isEmpty()) {
                            paintState.addDrawStep();
                            DrawType tempDrawType = redoState.removeEndState();
@@ -186,8 +192,7 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                   }
          }
 
-         
-                  // gan tuong duong voi cai khoi tao 
+         // gan tuong duong voi cai khoi tao 
          public void flush() {
                   start = null;
                   end = null;
@@ -209,13 +214,13 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
          }
 
          public void loadImage(BufferedImage img2) {
-                  Image img =(Image)img2;
-         
+                  Image img = (Image) img2;
+
                   if (img != null) {
                            flush();
                            org_img = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
-                             g2 = (Graphics2D) org_img.getGraphics();
-                             g2.drawImage(img, 0, 0, img.getWidth(null), img.getHeight(null), this);
+                           g2 = (Graphics2D) org_img.getGraphics();
+                           g2.drawImage(img, 0, 0, img.getWidth(null), img.getHeight(null), this);
                            g2.dispose();
                            buff_img = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
                            g2 = (Graphics2D) buff_img.getGraphics();
@@ -349,9 +354,9 @@ public class PadPaint extends javax.swing.JPanel implements MouseListener, Mouse
                                     break;
                            case BUCKET:
                                     bucket = new Bucket();
-                                    bucket.setStart(start); 
+                                    bucket.setStart(start);
                                     bucket.setColor(colorChooser.getFillColor());
-                                    bucket.draw(buff_img); 
+                                    bucket.draw(buff_img);
                                     break;
                            case ERASER:
                                     eraser = new Eraser();

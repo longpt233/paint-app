@@ -149,7 +149,7 @@ public class StrokeState extends javax.swing.JPanel {
             setHorizontalAlignment(CENTER);
             setVerticalAlignment(CENTER);
             for (int i = 0; i < fileStrokeIcon.length; i++) {
-                strokeIcon[i] = new ImageIcon(getImageIcon("/icon/stroke/" + fileStrokeIcon[i] + ".png"));
+                strokeIcon[i] = new ImageIcon(getImageIcon("/icon/" + fileStrokeIcon[i] + ".png"));
             }
         }
 
