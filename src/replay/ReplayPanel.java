@@ -30,26 +30,21 @@ public class ReplayPanel extends JPanel implements Runnable {
          private Eraser eraser;
          private int delay = 30;
          private boolean isPlaying;
-         private JToggleButton bPlay;
          private Thread thread = null;
          private int currentState = 0;
          private int currentStep = 0;
          private int cStateElement = 0;
          private ArrayList<Point> listPoint;
-         private ArrayList<DrawType> listState; 
+         private ArrayList<DrawType> listState;
          private Graphics2D g2d, g2;
 
          public void setDelay(int delay) {
                   this.delay = (105 - delay) / 2;
          }
 
-         public void setButton(JToggleButton bPlay) {
-                  this.bPlay = bPlay;
-         }
-
          public ReplayPanel(PaintState paintState) {
-                   this.paintState = paintState;
-                  listState = new ArrayList<>(); 
+                  this.paintState = paintState;
+                  listState = new ArrayList<>();
                   line = new Line();
                   rect = new Rectangle();
                   oval = new Oval();
@@ -62,8 +57,7 @@ public class ReplayPanel extends JPanel implements Runnable {
                   this.setSize(909, 439);
                   listPoint = new ArrayList<>();
                   listState = paintState.getListState();
-                  
-                  
+
                   int w = paintState.getWidth();
                   int h = paintState.getHeight();
                   int[] data = paintState.getData();
@@ -83,7 +77,7 @@ public class ReplayPanel extends JPanel implements Runnable {
                            refresh();
                            thread = new Thread(this);
                            isPlaying = true;
-                           thread.start(); 
+                           thread.start();
                   } else {
                            thread.resume();
                   }
@@ -91,19 +85,8 @@ public class ReplayPanel extends JPanel implements Runnable {
          }
 
          public void pauseReplay() {
-                  isPlaying = false; 
+                  isPlaying = false;
          }
-
-//         public void flush() {
-//                  if (isPlaying) {
-//                           bPlay.setIcon(new ImageIcon(getClass().getResource("/icon/pause.png")));
-//                           isPlaying = false;
-//                  }
-//                  //cấp phát một vùng nhớ mới để lấy trạng thái mới mà không tác động đé padpaint
-//                  paintState = new PaintState();
-//                 
-//                  paintState.setData(org_img);
-//         }
 
          public boolean isPlaying() {
                   return isPlaying;
@@ -128,7 +111,6 @@ public class ReplayPanel extends JPanel implements Runnable {
 
          // Variables declaration - do not modify//GEN-BEGIN:variables
          // End of variables declaration//GEN-END:variables
-     
          public void refresh() {
                   g2 = (Graphics2D) buff_img.getGraphics();
                   g2.drawImage(org_img, 0, 0, null);
@@ -194,21 +176,21 @@ public class ReplayPanel extends JPanel implements Runnable {
                                                       pencil.setPoint(listPoint.get(cStateElement), listPoint.get(cStateElement + 1));
                                                       pencil.draw(g2dBuffer);
                                              }
-                                    }  else if (drawType instanceof Eraser) {
+                                    } else if (drawType instanceof Eraser) {
                                              if (cStateElement < listPoint.size() - 1) {
                                                       eraser.setPoint(listPoint.get(cStateElement), listPoint.get(cStateElement + 1));
                                                       eraser.draw(g2dBuffer);
                                              }
-                                    } else if (drawType instanceof Bucket ) { 
-                                         if (cStateElement < listPoint.size()) {
-                                    bucket.setStart(listPoint.get(0));
-                                    bucket.setColor(bucket.getColor());
-                                    bucket.draw(g2dBuffer);
-                                             
-                                             System.out.println("replay.ReplayPanel.paintComponent()");
-                                          
-                                    }
-                                            
+                                    } else if (drawType instanceof Bucket) {
+                                             if (cStateElement < listPoint.size()) {
+                                                      bucket.setStart(listPoint.get(0));
+                                                      bucket.setColor(bucket.getColor());
+                                                      bucket.draw(g2dBuffer);
+
+                                                      System.out.println("replay.ReplayPanel.paintComponent()");
+
+                                             }
+
                                     }                                    //   g2dBuffer.dispose();
                            }
                   }
@@ -217,57 +199,57 @@ public class ReplayPanel extends JPanel implements Runnable {
          @Override
          public void run() {
 
-                            while (currentStep < paintState.getStepCount()) {
+                  while (currentStep < paintState.getStepCount()) {
                            if (isPlaying == false) {
                                     thread.suspend();
                            }
 
-                                             if (listPoint == null) {
-                                                      DrawType inDrawType = listState.get(currentState);
-                                                      if (inDrawType instanceof Line) {
-                                                               line = (Line) inDrawType;
-                                                               listPoint = line.getDraggedPoint();
+                           if (listPoint == null) {
+                                    DrawType inDrawType = listState.get(currentState);
+                                    if (inDrawType instanceof Line) {
+                                             line = (Line) inDrawType;
+                                             listPoint = line.getDraggedPoint();
 
-                                                      } else if (inDrawType instanceof Rectangle) {
-                                                               rect = (Rectangle) inDrawType;
-                                                               listPoint = rect.getDraggedPoint();
+                                    } else if (inDrawType instanceof Rectangle) {
+                                             rect = (Rectangle) inDrawType;
+                                             listPoint = rect.getDraggedPoint();
 
-                                                      } else if (inDrawType instanceof Oval) {
-                                                               oval = (Oval) inDrawType;
-                                                               listPoint = oval.getDraggedPoint();
+                                    } else if (inDrawType instanceof Oval) {
+                                             oval = (Oval) inDrawType;
+                                             listPoint = oval.getDraggedPoint();
 
-                                                      } else if (inDrawType instanceof Pencil) {
-                                                               pencil = (Pencil) inDrawType;
-                                                               listPoint = pencil.getDraggedPoint();
+                                    } else if (inDrawType instanceof Pencil) {
+                                             pencil = (Pencil) inDrawType;
+                                             listPoint = pencil.getDraggedPoint();
 
-                                                      } else if (inDrawType instanceof Eraser){
-                                                                eraser= (Eraser) inDrawType;
-                                                                listPoint=eraser.getDraggedPoint();
-                                                   
-                                                      } else if(inDrawType instanceof Bucket) {
+                                    } else if (inDrawType instanceof Eraser) {
+                                             eraser = (Eraser) inDrawType;
+                                             listPoint = eraser.getDraggedPoint();
 
-                                                                bucket = (Bucket) inDrawType;                                              
-                                                                bucket.getStart();
-                                                               bucket.draw(buff_img); ;
-                                                                currentState++;
-                                                                currentStep++;
-                                               
-                                             }
-                                             } else {   //Neu diem da duoc khoi tao
-                                                      //Kiem tra xem hinh hien tai da dat den trang thai cuoi cung cua hinh chua
+                                    } else if (inDrawType instanceof Bucket) {
 
-                                                      if (cStateElement == listPoint.size()) {
-                                                               listPoint = null;
-                                                               cStateElement = 0;
-                                                               currentState++;
-                                                               currentStep++;
-                                                      } else {   //Neu van con trang thai cho viec ve hinh va trong danh sach cac diem cua hinh hien tai
-                                                               //Diem con chua phai la diem cuoi cung thi se tang trang thai cua diem hien tai len mot
-                                                               ++cStateElement;
+                                             bucket = (Bucket) inDrawType;
+                                             bucket.getStart();
+                                             bucket.draw(buff_img);;
+                                             currentState++;
+                                             currentStep++;
 
-                                                      }
-                                             }
-                               
+                                    }
+                           } else {   //Neu diem da duoc khoi tao
+                                    //Kiem tra xem hinh hien tai da dat den trang thai cuoi cung cua hinh chua
+
+                                    if (cStateElement == listPoint.size()) {
+                                             listPoint = null;
+                                             cStateElement = 0;
+                                             currentState++;
+                                             currentStep++;
+                                    } else {   //Neu van con trang thai cho viec ve hinh va trong danh sach cac diem cua hinh hien tai
+                                             //Diem con chua phai la diem cuoi cung thi se tang trang thai cua diem hien tai len mot
+                                             ++cStateElement;
+
+                                    }
+                           }
+
                            try {
                                     Thread.sleep(delay);
                            } catch (InterruptedException ex) {
@@ -279,7 +261,6 @@ public class ReplayPanel extends JPanel implements Runnable {
                   System.gc();
                   isPlaying = false;
                   thread = null;
-                  bPlay.setIcon(new ImageIcon(getClass().getResource("/icon/pause.png")));
 
          }
 

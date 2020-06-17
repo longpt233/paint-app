@@ -45,7 +45,6 @@ public class ReplayDialog extends javax.swing.JDialog {
                   containerPanel.setLayout(null);
                   
                   replayPanel = new ReplayPanel(paintState);
-                  replayPanel.setButton(bPlay);
                   
                   buff_img = replayPanel.getBuffer();
                   
